@@ -29,7 +29,20 @@ return {
 
     {
         "mfussenegger/nvim-dap",
+        config = function()
+            require "configs.dap"
+        end,
     },
+
+    -- {
+    --     "mfussenegger/nvim-jdtls",
+    --     dependencies = {
+    --         "mfussenegger/nvim-dap",
+    --     },
+    --     config = function()
+    --         require "configs.jdtls"
+    --     end,
+    -- },
 
     -- These are some examples, uncomment them if you want to see them work!
     {
