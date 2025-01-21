@@ -5,6 +5,8 @@ return {
         opts = require "configs.conform",
     },
 
+    { "hiphish/rainbow-delimiters.nvim" },
+
     {
         "mbbill/undotree",
     },
