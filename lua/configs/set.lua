@@ -46,6 +46,7 @@ vim.o.mouse = "a"
 vim.o.number = true
 vim.o.numberwidth = 3
 vim.o.ruler = false
+vim.o.showmode = false
 
 vim.opt.shortmess:append "sI"
 
