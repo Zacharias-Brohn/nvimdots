@@ -20,10 +20,48 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "yes:1"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
 
+vim.opt.textwidth = 80
+vim.opt.formatoptions = "tcrqnja"
+
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+vim.o.laststatus = 3
+
+vim.o.clipboard = "unnamedplus"
+vim.o.cursorline = true
+vim.o.cursorlineopt = "number"
+
+vim.opt.fillchars = { eob = " " }
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.mouse = "a"
+
+vim.o.number = true
+vim.o.numberwidth = 3
+vim.o.ruler = false
+
+vim.opt.shortmess:append "sI"
+
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.timeoutlen = 400
+
+vim.opt.whichwrap:append "<>[]hl"
+
+vim.g.loaded_node_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
+-- add binaries installed by mason.nvim to path
+local is_windows = vim.fn.has "win32" ~= 0
+local sep = is_windows and "\\" or "/"
+local delim = is_windows and ";" or ":"
+vim.env.PATH = table.concat({ vim.fn.stdpath "data", "mason", "bin" }, sep) .. delim .. vim.env.PATH

@@ -25,7 +25,7 @@ require("focus").setup({
             enable = false,
             list = '+1',
         },
-        signcolumn = true,
+        signcolumn = false,
         winhighlight = false,
     }
 })

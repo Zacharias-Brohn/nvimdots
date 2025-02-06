@@ -103,24 +103,9 @@ local servers = {
 }
 
 lspconfig.hyprls.setup {
-    on_attach = nvlsp.on_attach,
-    root_dir = function( fname )
-        local root_files = {
-            'hyprland.conf',
-            'hypridle.conf',
-            'hyprlock.conf',
-            'hyprpaper.conf',
-            'hyprshade.conf',
-        }
-        local util = require 'lspconfig/util'
-        local root = util.root_pattern(unpack(root_files))(fname) or util.path.dirname(fname)
-        if root and string.match( root, '~/.config/hypr/' ) then
-            return root
-        else
-            return nil
-        end
-    end,
-    filetypes = { 'conf' },
+    root_dir = vim.fs.root( 0, 'hyprland.conf' ),
+    single_file_support = false,
+    filetypes = { "conf" },
 }
 
 -- lsps with default config
