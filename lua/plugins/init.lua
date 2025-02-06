@@ -141,6 +141,7 @@ return {
             use_matchfuzzy = true,
         },
     },
+
     {
         "nvim-treesitter/nvim-treesitter",
         opts = {
