@@ -102,11 +102,11 @@ local servers = {
     "zls",
 }
 
-lspconfig.hyprls.setup {
-    root_dir = vim.fs.root( 0, 'hyprland.conf' ),
-    single_file_support = false,
-    filetypes = { "conf" },
-}
+-- lspconfig.hyprls.setup {
+--     root_dir = vim.fs.root( 0, 'hyprland.conf' ),
+--     single_file_support = false,
+--     filetypes = { "conf" },
+-- }
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do

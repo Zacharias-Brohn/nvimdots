@@ -27,8 +27,8 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
 
-vim.opt.textwidth = 80
-vim.opt.formatoptions = "tcrqnja"
+vim.opt.textwidth = 0
+vim.opt.formatoptions = "tcrqnj"
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
