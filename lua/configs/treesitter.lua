@@ -3,7 +3,8 @@ pcall(function()
   dofile(vim.g.base46_cache .. "treesitter")
 end)
 
-return {
+require('nvim-treesitter.configs').setup {
+    build = ":TSUpdate",
     ensure_installed = "all",
     sync_install = false,
     auto_install = true,

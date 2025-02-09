@@ -15,6 +15,3 @@ autocmd('LspAttach', {
     end
 })
 
-vim.filetype.add({
-    pattern = { [".*/hypr/.*%.conf$"] = "hyprlang" },
-})
