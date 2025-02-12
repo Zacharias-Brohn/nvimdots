@@ -1,11 +1,12 @@
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 vim.cmd("source ~/.config/nvim/test.vim")
-require("configs.set")
+local time = tonumber(os.date "%H")
 
 vim.filetype.add({
     pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
 })
+require("configs.set")
 
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
@@ -19,28 +20,32 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
--- local lazy_config = require "configs.lazy"
+local lazy_config = require "configs.lazy"
 
 -- load plugins
 require("lazy").setup({
-    import = "plugins",
-    defaults = { lazy = false },
-    install = { colorscheme = { "nvchad" } },
+    { import = "plugins" },
+},  {
+    rocks = {
+        hererocks = true,
+    }
+},
+lazy_config)
 
-    ui = {
-        icons = {
-            ft = "",
-            lazy = "󰂠 ",
-            loaded = "",
-            not_loaded = "",
-        },
-    },
-})
+-- load colorscheme
+if time >= 10 and time < 20 then
+    require("nvconfig").base46.theme = "one_light"
+else
+    require("nvconfig").base46.theme = "gruvbox"
+end
+require("base46").load_all_highlights()
 
 -- load theme
+dofile(vim.g.base46_cache .. "syntax")
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
+require "options"
 require "nvchad.autocmds"
 
 

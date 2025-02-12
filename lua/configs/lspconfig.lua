@@ -87,7 +87,6 @@ vim.diagnostic.config({
 })
 
 local lspconfig = require "lspconfig"
-local nvlsp = require "nvchad.configs.lspconfig"
 
 -- EXAMPLE
 local servers = {
@@ -102,25 +101,14 @@ local servers = {
     "zls",
 }
 
+for _, server in ipairs(servers) do
+    lspconfig[server].setup {
+    }
+end
+
 -- lspconfig.hyprls.setup {
 --     root_dir = vim.fs.root( 0, 'hyprland.conf' ),
 --     single_file_support = false,
 --     filetypes = { "conf" },
 -- }
 
--- lsps with default config
-for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup {
-        on_attach = nvlsp.on_attach,
-        on_init = nvlsp.on_init,
-        capabilities = nvlsp.capabilities,
-    }
-end
-
-
--- configuring single server, example: typescript
--- lspconfig.ts_ls.setup {
---   on_attach = nvlsp.on_attach,
---   on_init = nvlsp.on_init,
---   capabilities = nvlsp.capabilities,
--- }
