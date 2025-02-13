@@ -279,11 +279,11 @@ return {
         end,
     },
 
-    {
-        "nvim-neorg/neorg",
-        dependencies = "3rd/image.nvim",
-        config = function()
-            require "configs.neorg"
-        end,
-    },
+    -- {
+    --     "nvim-neorg/neorg",
+    --     dependencies = "3rd/image.nvim",
+    --     config = function()
+    --         require "configs.neorg"
+    --     end,
+    -- },
 }
