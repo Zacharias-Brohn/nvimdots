@@ -2,7 +2,7 @@ dofile(vim.g.base46_cache .. "cmp")
 
 local cmp = require "cmp"
 
-local options = {
+cmp.setup {
   completion = { completeopt = "menu,menuone" },
 
   snippet = {
@@ -50,8 +50,15 @@ local options = {
     { name = "luasnip" },
     { name = "buffer" },
     { name = "nvim_lua" },
-    { name = "path" },
+    { name = "async_path" },
   },
 }
 
-return vim.tbl_deep_extend("force", options, require "nvchad.cmp")
+cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = 'path' },
+        { name = 'cmdline' },
+    }),
+    matching = { disallow_symbol_nonprefix_matching = false },
+})

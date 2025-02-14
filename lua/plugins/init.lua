@@ -263,10 +263,11 @@ return {
                 "hrsh7th/cmp-nvim-lsp",
                 "hrsh7th/cmp-buffer",
                 "hrsh7th/cmp-path",
+                "FelipeLema/cmp-async-path"
             },
         },
         opts = function()
-            return require "nvchad.configs.cmp"
+            return require "configs.cmp"
         end,
     },
 
