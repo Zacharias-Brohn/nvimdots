@@ -133,20 +133,20 @@ return {
         lazy = false,
         ---@type snacks.Config
         opts = {
-            animate = {
-                enabled = true,
-                fps = 144,
-                easing = "inExpo",
-                duration = 20,
-            },
-            bigfile = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
-            dashboard = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
-            explorer = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
+            bigfile = { enabled = true },
+            dashboard = { enabled = true },
+            explorer = { enabled = true },
             indent = {
                 enabled = true,
                 scope = {
                     enabled = false,
                     underline = true,
+                    animate = {
+                        enabled = true,
+                        fps = 144,
+                        easing = "inExpo",
+                        duration = 20,
+                    },
                 },
                 chunk = {
                     enabled = true,
@@ -158,19 +158,15 @@ return {
                         arrow = "╼",
                     },
                 },
-                animate = {
-                    easing = "linear",
-                    duration = 10,
-                } 
             },
-            input = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
-            picker = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
-            notifier = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
-            quickfile = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
-            scope = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
-            scroll = { enabled = true, animate = { easing = "linear", duration = 5 } },
-            statuscolumn = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
-            words = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
+            input = { enabled = true },
+            picker = { enabled = true },
+            notifier = { enabled = true },
+            quickfile = { enabled = true },
+            scope = { enabled = true },
+            scroll = { enabled = false },
+            statuscolumn = { enabled = true },
+            words = { enabled = true },
         },
     },
     {
