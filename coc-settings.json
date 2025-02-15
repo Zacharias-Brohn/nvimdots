@@ -1,0 +1,8 @@
+{
+	"languageserver": {
+		"hyprlang": {
+			"command": "hyprls",
+			"filetypes": ["hyprlang"]
+		}
+	}
+}
