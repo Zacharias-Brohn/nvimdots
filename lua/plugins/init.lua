@@ -134,7 +134,6 @@ return {
                     char = {
                         corner_top = "╭",
                         corner_bottom = "╰",
-
                         vertical = "│",
                         arrow = "╼",
                     },
@@ -177,6 +176,10 @@ return {
             border = nil,
             highlight_selection = true,
             use_matchfuzzy = true,
+            tab_completion = true,
         },
+    },
+    {
+        "andweeb/presence.nvim",
     },
 }

@@ -55,8 +55,6 @@ require("mason-lspconfig").setup({
     }
 })
 
-local cmp_select = { behaivior = cmp.SelectBehavior.Select }
-
 cmp.setup {
     completion = { completeopt = "menu,menuone" },
     snippet = {
@@ -72,12 +70,10 @@ cmp.setup {
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.close(),
-
         ["<CR>"] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Insert,
             select = true,
         },
-
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -87,7 +83,6 @@ cmp.setup {
                 fallback()
             end
         end, { "i", "s" }),
-
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
@@ -105,18 +100,8 @@ cmp.setup {
         { name = "luasnip" },
         { name = "buffer" },
         { name = "nvim_lua" },
-        { name = "async_path" },
     }),
 }
-
-cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-        { name = 'path' },
-        { name = 'cmdline' },
-    }),
-    matching = { disallow_symbol_nonprefix_matching = false },
-})
 
 vim.diagnostic.config({
     -- update_in_insert = true,
@@ -149,9 +134,3 @@ for _, server in ipairs(servers) do
     lspconfig[server].setup {
     }
 end
-
--- lspconfig.hyprls.setup {
---     root_dir = vim.fs.root( 0, 'hyprland.conf' ),
---     single_file_support = false,
---     filetypes = { "conf" },
--- }

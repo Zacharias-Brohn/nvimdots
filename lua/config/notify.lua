@@ -67,9 +67,6 @@ local function format_message(message, percentage)
 	return (percentage and percentage .. "%\t" or "") .. (message or "")
 end
 
--- LSP integration
--- Make sure to also have the snippet with the common helper functions in your config!
-
 vim.lsp.handlers["$/progress"] = function(_, result, ctx)
 	local client_id = ctx.client_id
 
@@ -110,7 +107,6 @@ vim.lsp.handlers["$/progress"] = function(_, result, ctx)
 end
 end
 
--- table from lsp severity to vim severity.
 local severity = {
 	"error",
 	"warn",
@@ -120,9 +116,6 @@ local severity = {
 vim.lsp.handlers["window/showMessage"] = function(err, method, params, client_id)
 	vim.notify(method.message, severity[params.type])
 end
-
--- DAP integration
--- Make sure to also have the snippet with the common helper functions in your config!
 
 dap.listeners.before['event_progressStart']['progress-notifications'] = function(session, body)
 	local notif_data = get_notif_data("dap", body.progressId)
