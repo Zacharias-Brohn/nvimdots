@@ -1,19 +1,21 @@
 require("bufferline").setup ({
     options = {
-        diagnostics = "nvim_lsp",
-        always_show_bufferline = true,
-        diagnostics_indicator = function(_, _, diag)
-            local icons = LazyVim.config.icons.diagnostics
-            local ret = (diag.error and icons.Error .. diag.error .. " " or "")
-            .. (diag.warning and icons.Warn .. diag.warning or "")
-            return vim.trim(ret)
+        diagnostics = "coc",
+        diagnostics_indicator = function(count, level, diagnostics_dict, context)
+            local s = " "
+            for e, n in pairs(diagnostics_dict) do
+                local sym = e == "error" and " "
+                or (e == "warning" and " " or " ")
+                s = s .. n .. sym
+            end
+            return s
         end,
+        always_show_bufferline = true,
         offsets = {
             {
-                filetype = "neo-tree",
-                text = "Neo-tree",
-                highlight = "Directory",
-                text_align = "left",
+                filetype = "NvimTree",
+                text = "Explorer",
+                text_align = "center",
             },
             {
                 filetype = "snacks_layout_box",
