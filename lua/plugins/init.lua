@@ -16,11 +16,11 @@ return {
         "neoclide/coc.nvim",
         branch = 'release',
     },
+    -- {
+    --     "sainnhe/gruvbox-material",
+    -- },
     {
-        "sainnhe/gruvbox-material",
-    },
-    {
-        "navarasu/onedark.nvim",
+        "olimorris/onedarkpro.nvim",
         config = function()
             require("config.themelight")
         end,
@@ -48,8 +48,8 @@ return {
         end,
     },
     {
-        "romgrk/barbar.nvim",
-        init = function() vim.g.barbar_auto_setup = false end,
+        "akinsho/bufferline.nvim",
+        event = "VeryLazy",
         config = function()
             require("config.barbar")
         end,
@@ -73,15 +73,15 @@ return {
             require("config.undotree")
         end,
     },
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        ---@module "ibl"
-        ---@type ibl.config
-        config = function()
-            require("config.indent-blankline")
-        end,
-    },
+    -- {
+    --     "lukas-reineke/indent-blankline.nvim",
+    --     main = "ibl",
+    --     ---@module "ibl"
+    --     ---@type ibl.config
+    --     config = function()
+    --         require("config.indent-blankline")
+    --     end,
+    -- },
     {
         "hiphish/rainbow-delimiters.nvim",
     },
@@ -124,7 +124,56 @@ return {
     {
         "mfussenegger/nvim-dap",
         config = function()
-            require "config.dap"
+            require("config.dap")
         end,
+    },
+    {
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        ---@type snacks.Config
+        opts = {
+            animate = {
+                enabled = true,
+                fps = 144,
+                easing = "inExpo",
+                duration = 20,
+            },
+            bigfile = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
+            dashboard = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
+            explorer = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
+            indent = {
+                enabled = true,
+                scope = {
+                    enabled = false,
+                    underline = true,
+                },
+                chunk = {
+                    enabled = true,
+                    char = {
+                        corner_top = "╭",
+                        corner_bottom = "╰",
+
+                        vertical = "│",
+                        arrow = "╼",
+                    },
+                },
+                animate = {
+                    easing = "linear",
+                    duration = 10,
+                } 
+            },
+            input = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
+            picker = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
+            notifier = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
+            quickfile = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
+            scope = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
+            scroll = { enabled = true, animate = { easing = "linear", duration = 5 } },
+            statuscolumn = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
+            words = { enabled = true, animate = { easing = "inExpo", duration = 20 } },
+        },
+    },
+    {
+        "notken12/base46-colors",
     },
 }

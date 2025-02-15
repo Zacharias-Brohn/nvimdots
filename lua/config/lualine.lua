@@ -1,5 +1,18 @@
 local fn = vim.fn
 
+local function get_coc_lsp_client()
+  local clients = vim.g.coc_service_initialized and vim.fn['CocAction']('services') or {}
+  for _, client in pairs(clients) do
+    if client['state'] == 'running' then
+      local client_name = client['id']
+      -- Remove 'languageserver.' prefix if it exists
+      client_name = client_name:gsub('^languageserver%.', '')
+      return client_name
+    end
+  end
+  return ''
+end
+
 local function spell()
     if vim.o.spell then
         return string.format("[SPELL]")
@@ -11,12 +24,7 @@ end
 --- show indicator for Chinese IME
 local function ime_state()
     if vim.g.is_mac then
-        -- ref: https://github.com/vim-airline/vim-airline/blob/master/autoload/airline/extensions/xkblayout.vim#L11
         local layout = fn.libcall(vim.g.XkbSwitchLib, "Xkb_Switch_getXkbLayout", "")
-
-        -- We can use `xkbswitch -g` on the command line to get current mode.
-        -- mode for macOS builtin pinyin IME: com.apple.inputmethod.SCIM.ITABC
-        -- mode for Rime: im.rime.inputmethod.Squirrel.Rime
         local res = fn.match(layout, [[\v(Squirrel\.Rime|SCIM.ITABC)]])
         if res ~= -1 then
             return "[CN]"
@@ -24,62 +32,6 @@ local function ime_state()
     end
 
     return ""
-end
-
-local function trailing_space()
-    if not vim.o.modifiable then
-        return ""
-    end
-
-    local line_num = nil
-
-    for i = 1, fn.line("$") do
-        local linetext = fn.getline(i)
-        -- To prevent invalid escape error, we wrap the regex string with `[[]]`.
-        local idx = fn.match(linetext, [[\v\s+$]])
-
-        if idx ~= -1 then
-            line_num = i
-            break
-        end
-    end
-
-    local msg = ""
-    if line_num ~= nil then
-        msg = string.format("[%d]trailing", line_num)
-    end
-
-    return msg
-end
-
-local function mixed_indent()
-    if not vim.o.modifiable then
-        return ""
-    end
-
-    local space_pat = [[\v^ +]]
-    local tab_pat = [[\v^\t+]]
-    local space_indent = fn.search(space_pat, "nwc")
-    local tab_indent = fn.search(tab_pat, "nwc")
-    local mixed = (space_indent > 0 and tab_indent > 0)
-    local mixed_same_line
-    if not mixed then
-        mixed_same_line = fn.search([[\v^(\t+ | +\t)]], "nwc")
-        mixed = mixed_same_line > 0
-    end
-    if not mixed then
-        return ""
-    end
-    if mixed_same_line ~= nil and mixed_same_line > 0 then
-        return "MI:" .. mixed_same_line
-    end
-    local space_indent_cnt = fn.searchcount({ pattern = space_pat, max_count = 1e3 }).total
-    local tab_indent_cnt = fn.searchcount({ pattern = tab_pat, max_count = 1e3 }).total
-    if space_indent_cnt > tab_indent_cnt then
-        return "MI:" .. tab_indent
-    else
-        return "MI:" .. space_indent
-    end
 end
 
 local diff = function()
@@ -118,36 +70,21 @@ local virtual_env = function()
     end
 end
 
-local get_active_lsp = function()
-    local msg = "No Active Lsp"
-    local buf_ft = vim.api.nvim_get_option_value("filetype", {})
-    local clients = vim.lsp.get_clients { bufnr = 0 }
-    if next(clients) == nil then
-        return msg
-    end
-
-    for _, client in ipairs(clients) do
-        ---@diagnostic disable-next-line: undefined-field
-        local filetypes = client.config.filetypes
-        if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-            return client.name
-        end
-    end
-    return msg
-end
-
 require("lualine").setup {
     options = {
         icons_enabled = true,
         theme = "auto",
-        component_separators = { left = "⏐", right = "⏐" },
-        section_separators = "",
+        globalstatus = true,
+        component_separators = '',
+        section_separators = { left = '', right = '' },
         disabled_filetypes = {},
         always_divide_middle = true,
     },
     sections = {
         lualine_a = {
-            "mode",
+            {
+                "mode",
+            },
         },
         lualine_b = {
             {
@@ -157,6 +94,7 @@ require("lualine").setup {
                     return string.sub(name, 1, 20)
                 end,
                 color = { gui = "italic,bold" },
+                separator = { right = "" },
             },
             {
                 virtual_env,
@@ -189,7 +127,7 @@ require("lualine").setup {
                 color = { fg = "black", bg = "#f46868" },
             },
             {
-                get_active_lsp,
+                get_coc_lsp_client,
                 icon = " LSP:",
             },
             {
@@ -203,23 +141,14 @@ require("lualine").setup {
             {
                 "fileformat",
                 symbols = {
-                    unix = "unix",
-                    dos = "win",
-                    mac = "mac",
+                    unix = "",
+                    dos = "",
+                    mac = "",
                 },
             },
             "filetype",
         },
         lualine_z = {
-            {
-                trailing_space,
-                color = "WarningMsg",
-            },
-            {
-                mixed_indent,
-                color = "WarningMsg",
-            },
-            "location",
             "progress",
         },
     },

@@ -6,12 +6,6 @@ vim.g.mapleader = " "
 vim.g.gruvbox_material_background = "medium"
 vim.g.coq_settings = { keymap = { recommended = false } }
 vim.g.gruvbox_material_foreground = "original"
--- if time >= 10 and time < 20 then
---     vim.g.lightline = {
---         colorscheme = "one",
---     }
--- else
---     vim.g.lightline = {
---         colorscheme = "gruvbox",
---     }
--- end
+vim.api.nvim_set_hl(0, 'GitGutterAdd', { fg = '#009900', ctermfg = 2 })
+vim.api.nvim_set_hl(0, 'GitGutterChange', { fg = '#bbbb00', ctermfg = 3 })
+vim.api.nvim_set_hl(0, 'GitGutterDelete', { fg = '#ff2222', ctermfg = 1 })

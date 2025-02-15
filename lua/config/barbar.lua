@@ -1,52 +1,30 @@
-require("barbar").setup ({
-    animation = true,
-    auto_hide = false,
-    tabpages = true,
-    clickable = true,
-    exclude_ft = { "NvimTree" },
-    focus_on_close = 'left',
-    highlight_alternate = false,
-    highlight_inactive_file_icons = true,
-    highlight_visible = true,
-    icons = {
-        buffer_index = false,
-        buffer_number = false,
-        button = '',
-        diagnostics = {
-            [vim.diagnostic.severity.ERROR] = {enabled = true, icon = 'ﬀ'},
-            [vim.diagnostic.severity.WARN] = {enabled = false},
-            [vim.diagnostic.severity.INFO] = {enabled = false},
-            [vim.diagnostic.severity.HINT] = {enabled = true},
+require("bufferline").setup ({
+    options = {
+        diagnostics = "nvim_lsp",
+        always_show_bufferline = true,
+        diagnostics_indicator = function(_, _, diag)
+            local icons = LazyVim.config.icons.diagnostics
+            local ret = (diag.error and icons.Error .. diag.error .. " " or "")
+            .. (diag.warning and icons.Warn .. diag.warning or "")
+            return vim.trim(ret)
+        end,
+        offsets = {
+            {
+                filetype = "neo-tree",
+                text = "Neo-tree",
+                highlight = "Directory",
+                text_align = "left",
+            },
+            {
+                filetype = "snacks_layout_box",
+            },
         },
-        gitsigns = {
-            added = {enabled = true, icon = '+'},
-            changed = {enabled = true, icon = '~'},
-            deleted = {enabled = true, icon = '-'},
-        },
-        filetype = {
-            custom_colors = false,
-            enabled = true,
-        },
-        separator = {left = '▏', right = ''},
-        separator_at_end = true,
-        modified = {button = '●'},
-        pinned = {button = '', filename = true},
-        preset = 'default',
-        alternate = {filetype = {enabled = true}},
-        current = {buffer_index = false},
-        inactive = {button = '×', filetype = {enabled = true}, separator = {left = '▏', right = ''} },
-        visible = {modified = {buffer_number = false}},
-    },
-    insert_at_end = true,
-    maximum_padding = 1,
-    minimum_padding = 1,
-    maximum_length = 15,
-    minimum_length = 15,
-    sidebar_filetypes = {
-        NvimTree = true,
-        undotree = {
-            text = "undotree",
-            align = "center",
-        },
+        vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete" }, {
+            callback = function()
+                vim.schedule(function()
+                    pcall(nvim_bufferline)
+                end)
+            end,
+        })
     },
 })

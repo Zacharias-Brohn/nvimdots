@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 
-map("n", "<Tab>", ":BufferNext<CR>")
-map("n", "<S-Tab>", ":BufferPrevious<CR>")
+map("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>")
+map("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>")
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 
@@ -21,10 +21,11 @@ map("i", "<A-c>", vim.cmd.CopilotChatToggle)
 map("v", "<A-c>", vim.cmd.CopilotChatToggle)
 
 map('n', '<leader>e', vim.cmd.NvimTreeToggle)
+-- map('n', '<leader>e', function() Snacks.explorer() end)
 map('n', '<leader>u', require('undotree').toggle, { noremap = true, silent = true })
 
-map("n", "<A-->", ":BufferClose<CR>")
-map("n", "<SA-->", ":BufferRestore<CR>")
+map("n", "<A-->", ":bdelete<CR>")
+-- map("n", "<SA-->", ":BufferRestore<CR>")
 
 map("n", "<C-a>", "ggVG", { noremap = true, silent = true })
 
