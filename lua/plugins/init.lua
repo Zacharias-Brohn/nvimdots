@@ -13,13 +13,6 @@ return {
         end,
     },
     {
-        "neoclide/coc.nvim",
-        branch = 'release',
-    },
-    -- {
-    --     "sainnhe/gruvbox-material",
-    -- },
-    {
         "olimorris/onedarkpro.nvim",
         config = function()
             require("config.themelight")
@@ -54,9 +47,6 @@ return {
             require("config.barbar")
         end,
     },
-    -- {
-    --     "itchyny/lightline.vim",
-    -- },
     {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
@@ -73,15 +63,6 @@ return {
             require("config.undotree")
         end,
     },
-    -- {
-    --     "lukas-reineke/indent-blankline.nvim",
-    --     main = "ibl",
-    --     ---@module "ibl"
-    --     ---@type ibl.config
-    --     config = function()
-    --         require("config.indent-blankline")
-    --     end,
-    -- },
     {
         "hiphish/rainbow-delimiters.nvim",
     },
@@ -124,7 +105,7 @@ return {
     {
         "mfussenegger/nvim-dap",
         config = function()
-            require("config.dap")
+            require("config.dapconf")
         end,
     },
     {
@@ -171,5 +152,31 @@ return {
     },
     {
         "notken12/base46-colors",
+    },
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
+            "hrsh7th/nvim-cmp",
+            "L3MON4D3/LuaSnip",
+            "saadparwaiz1/cmp_luasnip",
+            "j-hui/fidget.nvim",
+        },
+        config = function()
+            require("config.lspconfig")
+        end,
+    },
+    {
+        "smolck/command-completion.nvim",
+        opts = {
+            border = nil,
+            highlight_selection = true,
+            use_matchfuzzy = true,
+        },
     },
 }
