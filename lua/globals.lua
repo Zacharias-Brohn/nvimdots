@@ -6,12 +6,12 @@ vim.g.mapleader = " "
 vim.g.gruvbox_material_background = "medium"
 vim.g.coq_settings = { keymap = { recommended = false } }
 vim.g.gruvbox_material_foreground = "original"
-if time >= 10 and time < 20 then
-    vim.g.lightline = {
-        colorscheme = "one",
-    }
-else
-    vim.g.lightline = {
-        colorscheme = "gruvbox",
-    }
-end
+-- if time >= 10 and time < 20 then
+--     vim.g.lightline = {
+--         colorscheme = "one",
+--     }
+-- else
+--     vim.g.lightline = {
+--         colorscheme = "gruvbox",
+--     }
+-- end
