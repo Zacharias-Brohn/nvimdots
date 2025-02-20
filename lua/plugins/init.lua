@@ -182,4 +182,13 @@ return {
     {
         "andweeb/presence.nvim",
     },
+    {
+        "nvim-focus/focus.nvim",
+        config = function()
+            require("config.focus")
+        end,
+    },
+    {
+        "mfussenegger/nvim-jdtls",
+    },
 }
