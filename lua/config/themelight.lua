@@ -1,2 +1,0 @@
--- Lua
-require('onedarkpro').setup({})
