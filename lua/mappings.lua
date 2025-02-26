@@ -20,8 +20,8 @@ map("n", "<A-c>", vim.cmd.CopilotChatToggle)
 map("i", "<A-c>", vim.cmd.CopilotChatToggle)
 map("v", "<A-c>", vim.cmd.CopilotChatToggle)
 
-map('n', '<leader>e', vim.cmd.NvimTreeToggle)
--- map('n', '<leader>e', function() Snacks.explorer() end)
+-- map('n', '<leader>e', vim.cmd.NvimTreeToggle)
+map('n', '<leader>e', function() Snacks.explorer() end)
 map('n', '<leader>u', require('undotree').toggle, { noremap = true, silent = true })
 
 map("n", "<A-->", ":bdelete<CR>")

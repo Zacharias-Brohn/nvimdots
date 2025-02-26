@@ -3,7 +3,6 @@ require("options")
 require("config.lazy")
 require("mappings")
 require("autocmd")
-vim.cmd("source ~/.config/nvim/suda.vim")
 local time = tonumber( os.date "%H" )
 
 vim.filetype.add({

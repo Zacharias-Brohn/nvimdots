@@ -29,6 +29,10 @@ return {
     },
     {
         "lambdalisue/vim-suda",
+        init = function()
+            vim.g.suda_smart_edit = 1
+            -- vim.g["suda#noninteractive"] = 1
+        end,
     },
     {
         "nvim-tree/nvim-web-devicons",
@@ -183,12 +187,16 @@ return {
         "andweeb/presence.nvim",
     },
     {
-        "nvim-focus/focus.nvim",
-        config = function()
-            require("config.focus")
-        end,
+        "mfussenegger/nvim-jdtls",
     },
     {
-        "mfussenegger/nvim-jdtls",
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        config = function()
+            require("config.harpoon")
+        end,
     },
 }
