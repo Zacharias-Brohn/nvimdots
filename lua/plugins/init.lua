@@ -13,12 +13,6 @@ return {
         end,
     },
     {
-        "olimorris/onedarkpro.nvim",
-        config = function()
-            require("config.themelight")
-        end,
-    },
-    {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -57,9 +51,6 @@ return {
         config = function ()
             require("config.lualine")
         end,
-    },
-    {
-        "shinchu/lightline-gruvbox.vim",
     },
     {
         "jiaoshijie/undotree",
@@ -199,4 +190,11 @@ return {
             require("config.harpoon")
         end,
     },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        Config = function()
+            require("config.catppuccin-macchiatto")
+        end,
+    }
 }

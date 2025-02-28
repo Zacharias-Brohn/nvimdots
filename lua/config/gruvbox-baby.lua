@@ -1,1 +1,0 @@
-require("gruvbox-baby").setup()
