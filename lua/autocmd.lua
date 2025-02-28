@@ -1,4 +1,6 @@
-vim.api.nvim_create_autocmd({'BufEnter', 'QuitPre'}, {
+local autocmd = vim.api.nvim_create_autocmd
+
+autocmd({'BufEnter', 'QuitPre'}, {
     nested = false,
     callback = function(e)
         local tree = require('nvim-tree.api').tree
@@ -8,7 +10,6 @@ vim.api.nvim_create_autocmd({'BufEnter', 'QuitPre'}, {
             return
         end
 
-        -- How many focusable windows do we have? (excluding e.g. incline status window)
         local winCount = 0
         for _,winId in ipairs(vim.api.nvim_list_wins()) do
             if vim.api.nvim_win_get_config(winId).focusable then
@@ -33,4 +34,18 @@ vim.api.nvim_create_autocmd({'BufEnter', 'QuitPre'}, {
             end, 10)
         end
     end
+})
+
+autocmd("VimEnter", {
+  callback = function()
+    --NVIM_ENTER=1
+    vim.cmd([[call chansend(v:stderr, "\033]1337;SetUserVar=NVIM_ENTER=MQ==\007")]])
+  end,
+})
+
+autocmd("VimLeavePre", {
+  callback = function()
+    --NVIM_ENTER=0
+    vim.cmd([[call chansend(v:stderr, "\033]1337;SetUserVar=NVIM_ENTER=MA==\007")]])
+  end,
 })
