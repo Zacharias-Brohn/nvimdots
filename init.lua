@@ -3,7 +3,6 @@ require("options")
 require("config.lazy")
 require("mappings")
 require("autocmd")
-local time = tonumber( os.date "%H" )
 
 vim.filetype.add({
     pattern = {
@@ -12,13 +11,7 @@ vim.filetype.add({
     }
 })
 
-if time >= 10 and time < 16 then
-    vim.o.background = "light"
-    vim.cmd[[colorscheme one_light]]
-else
-    vim.o.background = "dark"
-    vim.cmd[[colorscheme gruvbox]]
-end
+vim.cmd[[colorscheme gruvbox]]
 
 local bg_color = vim.api.nvim_get_hl_by_name('Normal', true).background
 

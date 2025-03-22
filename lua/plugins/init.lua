@@ -199,4 +199,16 @@ return {
             require("config.harpoon")
         end,
     },
+    {
+        "aserowy/tmux.nvim",
+        config = function()
+            require("config.tmux")
+        end,
+    },
+    {
+        "catgoose/nvim-colorizer.lua",
+        config = function()
+            require("config.colorizer")
+        end,
+    },
 }

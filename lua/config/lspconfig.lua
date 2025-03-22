@@ -134,12 +134,3 @@ for _, server in ipairs(servers) do
     lspconfig[server].setup {
     }
 end
-
--- lspconfig.jdtls.setup {
---     cmd = { "jdtls", "-Dfile.encoding=UTF-8" },
--- }
-
--- lspconfig.java_language_server.setup {
---     filetypes = { "java" },
---     cmd = { "/usr/share/java/java-language-server/lang_server_linux.sh" },
--- }

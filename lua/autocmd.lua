@@ -49,3 +49,8 @@ autocmd("VimLeavePre", {
     vim.cmd([[call chansend(v:stderr, "\033]1337;SetUserVar=NVIM_ENTER=MA==\007")]])
   end,
 })
+
+vim.api.nvim_create_autocmd("VimLeave", {
+  pattern = "*",
+  command = "set guicursor=a:ver25"
+})
