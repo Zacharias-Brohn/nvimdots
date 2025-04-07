@@ -1,4 +1,4 @@
-***Remove lines containing regex***
+## Remove lines containing regex
 ```
 :%g/{regex}/d
 ```
