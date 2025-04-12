@@ -58,19 +58,3 @@ map("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 map("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
-
--- Tmux binds
-map("n", "<C-A-Left>", "<cmd>lua require('tmux').move_left()<CR>")
-map("n", "<C-A-Down>", "<cmd>lua require('tmux').move_bottom()<CR>")
-map("n", "<C-A-Up>", "<cmd>lua require('tmux').move_top()<CR>")
-map("n", "<C-A-Right>", "<cmd>lua require('tmux').move_right()<CR>")
-
-map("n", "<A-S-Left>", "<cmd>lua require('tmux').resize_left()<CR>")
-map("n", "<A-S-Down>", "<cmd>lua require('tmux').resize_bottom()<CR>")
-map("n", "<A-S-Up>", "<cmd>lua require('tmux').resize_top()<CR>")
-map("n", "<A-S-Right>", "<cmd>lua require('tmux').resize_right()<CR>")
-
-map("n", "<leader><Left>", "<cmd>lua require('tmux').swap_left()<CR>")
-map("n", "<leader><Down>", "<cmd>lua require('tmux').swap_bottom()<CR>")
-map("n", "<leader><Up>", "<cmd>lua require('tmux').swap_top()<CR>")
-map("n", "<leader><Right>", "<cmd>lua require('tmux').swap_right()<CR>")

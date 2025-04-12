@@ -31,7 +31,6 @@ return {
         "lambdalisue/vim-suda",
         init = function()
             vim.g.suda_smart_edit = 1
-            -- vim.g["suda#noninteractive"] = 1
         end,
     },
     {
@@ -57,6 +56,18 @@ return {
         config = function ()
             require("config.lualine")
         end,
+    },
+    {
+        "mawkler/modicator.nvim",
+        init = function()
+            -- These are required for Modicator to work
+            vim.o.cursorline = true
+            vim.o.number = true
+            vim.o.termguicolors = true
+        end,
+        config = function()
+            require("config.modicator")
+        end
     },
     {
         "shinchu/lightline-gruvbox.vim",
@@ -98,10 +109,10 @@ return {
     {
         "CopilotC-Nvim/CopilotChat.nvim",
         dependencies = {
-            { "zbirenbaum/copilot.lua" }, -- or zbirenbaum/copilot.lua
-            { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+            { "zbirenbaum/copilot.lua" },
+            { "nvim-lua/plenary.nvim", branch = "master" },
         },
-        build = "make tiktoken", -- Only on MacOS or Linux
+        build = "make tiktoken",
         config = function()
             require "config.copilotchat"
         end,
@@ -201,12 +212,6 @@ return {
         },
         config = function()
             require("config.harpoon")
-        end,
-    },
-    {
-        "aserowy/tmux.nvim",
-        config = function()
-            require("config.tmux")
         end,
     },
     {
