@@ -1,9 +1,12 @@
 require("config.lazy")
 require("options")
-vim.cmd[[colorscheme gruvbox]]
 require("globals")
 require("mappings")
 require("autocmd")
+
+if vim.g.neovide then
+    require("config.neovide")
+end
 
 vim.filetype.add({
     pattern = {
@@ -12,3 +15,4 @@ vim.filetype.add({
     }
 })
 
+vim.cmd[[colorscheme onedark]]

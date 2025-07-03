@@ -1,0 +1,11 @@
+vim.g.neovide_cursor_trail_size = 0
+vim.g.neovide_floating_corner_radius = 0.4
+vim.o.guifont = "0xProto Nerd Font Mono:h12"
+vim.g.neovide_refresh_rate = 144
+vim.g.neovide_refresh_rate_idle = 144
+vim.g.neovide_no_idle = true
+vim.g.neovide_floating_blur_amount_x = 0
+vim.g.neovide_floating_blur_amount_y = 0
+vim.g.neovide_cursor_animation_length = 0.08
+vim.g.neovide_cursor_short_animation_length = 0.04
+vim.g.neovide_scroll_animation_length = 0.15

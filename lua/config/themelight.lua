@@ -1,2 +1,8 @@
 -- Lua
-require('onedarkpro').setup({})
+require('onedarkpro').setup({
+    highlights = {
+        Comment = { italic = true },
+        Directory = { bold = false },
+        ErrorMsg = { italic = true },
+    },
+})

@@ -54,3 +54,31 @@ vim.api.nvim_create_autocmd("VimLeave", {
   pattern = "*",
   command = "set guicursor=a:ver25"
 })
+
+autocmd({"BufEnter", "BufRead", "BufNewFile" }, {
+    pattern = "*",
+    callback = function()
+        vim.bo.tabstop = 4
+        vim.bo.shiftwidth = 4
+        vim.bo.softtabstop = 4
+        vim.bo.expandtab = true
+        vim.bo.smartindent = true
+    end,
+})
+
+autocmd("BufWritePre", {
+    pattern = {"*.zig", "*.zon"},
+    callback = function(ev)
+        vim.lsp.buf.code_action({
+            context = { only = { "source.organiceImports" }},
+            apply = true,
+        })
+    end,
+})
+
+-- autocmd("FileWrite", {
+--     pattern = { "~/.config/waybar/testconfig/style.scss" },
+--     callback = function()
+--         vim.cmd(":!sass ~/.config/waybar/testconfig/style.scss ~/.config/waybar/testconfig/teststyle.css")
+--     end,
+-- })

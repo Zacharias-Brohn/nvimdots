@@ -14,6 +14,7 @@ return {
     },
     {
         "olimorris/onedarkpro.nvim",
+        priority = 1000,
         config = function()
             require("config.themelight")
         end,
@@ -80,6 +81,7 @@ return {
     },
     {
         "hiphish/rainbow-delimiters.nvim",
+        enabled = false,
     },
     {
         "windwp/nvim-autopairs",
@@ -172,6 +174,9 @@ return {
         "notken12/base46-colors",
     },
     {
+        "hrsh7th/nvim-cmp",
+    },
+    {
         "neovim/nvim-lspconfig",
         dependencies = {
             "williamboman/mason.nvim",
@@ -219,5 +224,8 @@ return {
         config = function()
             require("config.colorizer")
         end,
+    },
+    {
+        "ziglang/zig.vim",
     },
 }

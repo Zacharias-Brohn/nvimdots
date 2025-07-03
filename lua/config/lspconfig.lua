@@ -7,6 +7,34 @@ local capabilities = vim.tbl_deep_extend(
     cmp_lsp.default_capabilities()
 )
 
+local cmp_kinds = {
+  Text = '  ',
+  Method = '  ',
+  Function = '  ',
+  Constructor = '  ',
+  Field = '  ',
+  Variable = '  ',
+  Class = '  ',
+  Interface = '  ',
+  Module = '  ',
+  Property = '  ',
+  Unit = '  ',
+  Value = '  ',
+  Enum = '  ',
+  Keyword = '  ',
+  Snippet = '  ',
+  Color = '  ',
+  File = '  ',
+  Reference = '  ',
+  Folder = '  ',
+  EnumMember = '  ',
+  Constant = '  ',
+  Struct = '  ',
+  Event = '  ',
+  Operator = '  ',
+  TypeParameter = '  ',
+}
+
 require("fidget").setup({})
 require("mason").setup()
 require("mason-lspconfig").setup({
@@ -25,6 +53,7 @@ require("mason-lspconfig").setup({
         zls = function()
             local lspconfig = require("lspconfig")
             lspconfig.zls.setup({
+                capabilities = capabilities,
                 root_dir = lspconfig.util.root_pattern(".git", "build.zig", "zls.json"),
                 settings = {
                     zls = {
@@ -56,6 +85,16 @@ require("mason-lspconfig").setup({
 })
 
 cmp.setup {
+    formatting = {
+        fields = { 'kind', 'abbr' },
+        format = function(entry, vim_item)
+            vim_item.kind = cmp_kinds[vim_item.kind] or ''
+            if entry.completion_item.detail then
+                vim_item.menu = entry.completion_item.detail
+            end
+            return vim_item
+        end,
+    },
     completion = { completeopt = "menu,menuone" },
     snippet = {
         expand = function(args)
@@ -105,6 +144,7 @@ cmp.setup {
 
 vim.diagnostic.config({
     -- update_in_insert = true,
+    virtual_text = true,
     float = {
         focusable = false,
         style = "minimal",
@@ -117,6 +157,27 @@ vim.diagnostic.config({
 
 local lspconfig = require "lspconfig"
 
+lspconfig.zls.setup({
+    capabilities = capabilities,
+    root_dir = lspconfig.util.root_pattern(".git", "build.zig", "zls.json"),
+    settings = {
+        zls = {
+            enable_inlay_hints = true,
+            enable_snippets = true,
+            warn_style = true,
+        },
+    },
+})
+-- lspconfig.zls.setup {
+--     cmd = { "zls" },
+--     settings = {
+--         zls = {
+--             enable_build_on_save = true,
+--             semantic_tokens = "partial",
+--         },
+--     },
+-- }
+
 -- EXAMPLE
 local servers = {
     "html",
@@ -127,7 +188,6 @@ local servers = {
     "ts_ls",
     -- "jdtls",
     "sourcekit",
-    "zls",
 }
 
 for _, server in ipairs(servers) do
