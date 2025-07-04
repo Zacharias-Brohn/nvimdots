@@ -13,7 +13,7 @@ require("mason-lspconfig").setup({
     ensure_installed = {
         "lua_ls",
         "rust_analyzer",
-        "gopls",
+        "powershell_es",
     },
     handlers = {
         function(server_name) -- default handler (optional)
@@ -121,6 +121,7 @@ local lspconfig = require "lspconfig"
 local servers = {
     "html",
     "cssls",
+    "css_variables",
     "bashls",
     "texlab",
     "pyright",

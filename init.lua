@@ -4,7 +4,6 @@ require("config.lazy")
 require("mappings")
 require("autocmd")
 require("api")
-vim.cmd("source ~/.config/nvim/suda.vim")
 
 vim.filetype.add({
     pattern = {
