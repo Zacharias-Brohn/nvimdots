@@ -81,7 +81,7 @@ return {
     },
     {
         "hiphish/rainbow-delimiters.nvim",
-        enabled = false,
+        enabled = true,
     },
     {
         "windwp/nvim-autopairs",
@@ -228,4 +228,11 @@ return {
     {
         "ziglang/zig.vim",
     },
+    -- {
+    --     "nicolas-martin/region-folding.nvim",
+    --     event = { "BufReadPost", "BufNewFile" },
+    --     opts = function()
+    --         require("config.region-folding")
+    --     end,
+    -- },
 }

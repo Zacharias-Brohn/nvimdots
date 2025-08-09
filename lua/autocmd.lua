@@ -36,6 +36,17 @@ autocmd({'BufEnter', 'QuitPre'}, {
     end
 })
 
+autocmd("BufEnter", {
+    pattern = "copilot-*",
+    callback = function()
+        vim.opt.foldmethod = "expr"
+        vim.opt.foldexpr = "v:lua.require('config.testfold').foldexpr()"
+        vim.opt.foldenable = true
+        vim.opt.foldlevel = 0
+        vim.opt.foldlevelstart = 0
+    end,
+})
+
 autocmd("VimEnter", {
   callback = function()
     --NVIM_ENTER=1
