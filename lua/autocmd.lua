@@ -47,5 +47,6 @@ autocmd("VimLeavePre", {
   callback = function()
     --NVIM_ENTER=0
     vim.cmd([[call chansend(v:stderr, "\033]1337;SetUserVar=NVIM_ENTER=MA==\007")]])
+    vim.cmd([[call system('printf "\e[5 q" > $TTY')]])
   end,
 })

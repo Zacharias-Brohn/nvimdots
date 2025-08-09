@@ -121,7 +121,6 @@ local lspconfig = require "lspconfig"
 local servers = {
     "html",
     "cssls",
-    "css_variables",
     "bashls",
     "texlab",
     "pyright",

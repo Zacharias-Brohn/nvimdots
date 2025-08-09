@@ -196,5 +196,11 @@ return {
         Config = function()
             require("config.catppuccin-macchiatto")
         end,
-    }
+    },
+    {
+        "catgoose/nvim-colorizer.lua",
+        config = function()
+            require("config.colorizer")
+        end,
+    },
 }
