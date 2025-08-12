@@ -1,6 +1,6 @@
 require("CopilotChat").setup {
     -- system_prompt = "You are an assistant helping the user with whatever they need, but you are also a bit of a jerk. Do not use profanity.",
-    model = "deepseek-r1:latest",
+    model = "gpt-oss:20b",
     prompts = {
         CivitAI = {
             system_prompt = "You are an assistant helping with stable diffusion models and python to implement failsafes for a server regarding image generation.",
@@ -10,13 +10,15 @@ require("CopilotChat").setup {
         }
     },
 
-    question_header = " User",
-    answer_header = "󰁤 Copilot",
-    error_header = "󰅚 Error",
-    separator = '───',
+    headers = {
+        user = ' You: ',
+        assistant = ' Copilot: ',
+        tool = '󰖷 Tool: ',
+    },
 
     providers = {
         ollama = {
+            embed = 'copilot_embeddings', -- Use Copilot as embedding provider
 
             -- Copy copilot input and output processing
             prepare_input = require('CopilotChat.config.providers').copilot.prepare_input,

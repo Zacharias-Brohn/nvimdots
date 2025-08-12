@@ -20,19 +20,17 @@ map("n", "<A-c>", vim.cmd.CopilotChatToggle)
 map("i", "<A-c>", vim.cmd.CopilotChatToggle)
 map("v", "<A-c>", vim.cmd.CopilotChatToggle)
 
--- map('n', '<leader>e', vim.cmd.NvimTreeToggle)
+-- Explorer and Undotree
 map('n', '<leader>e', function() Snacks.explorer() end)
 map('n', '<leader>u', require('undotree').toggle, { noremap = true, silent = true })
+
+-- Telescope grep
+map("n", "<leader>g", require("telescope.builtin").live_grep, {desc = "Telescope grep" })
 
 map("n", "<A-->", ":bdelete<CR>")
 -- map("n", "<SA-->", ":BufferRestore<CR>")
 
 map("n", "<C-a>", "ggVG", { noremap = true, silent = true })
-
-map("n", "<leader>pv", vim.cmd.Ex)
-
-map("v", "J", ":m '>+1<CR>gv=gv")
-map("v", "K", ":m '<-2<CR>gv=gv")
 
 map("n", "J", "mzJ`z")
 map("n", "<C-d>", "<C-d>zz")
