@@ -38,13 +38,6 @@ return {
         "nvim-tree/nvim-web-devicons",
     },
     {
-        "nvim-tree/nvim-tree.lua",
-        cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-        config = function()
-            require("config.nvimtree")
-        end,
-    },
-    {
         "akinsho/bufferline.nvim",
         event = "VeryLazy",
         config = function()
@@ -60,8 +53,7 @@ return {
     },
     {
         "mawkler/modicator.nvim",
-        init = function()
-            -- These are required for Modicator to work
+        setup = function()
             vim.o.cursorline = true
             vim.o.number = true
             vim.o.termguicolors = true
@@ -173,8 +165,20 @@ return {
     {
         "notken12/base46-colors",
     },
+    -- {
+    --     "mason-org/mason-lspconfig.nvim",
+    --     opts = {},
+    --     dependencies = {
+    --         { "mason-org/mason.nvim", opts = {} },
+    --         "neovim/nvim-lspconfig",
+    --     },
+    -- },
     {
-        "hrsh7th/nvim-cmp",
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = function()
+            require("config.lazydev")
+        end,
     },
     {
         "neovim/nvim-lspconfig",
@@ -228,11 +232,8 @@ return {
     {
         "ziglang/zig.vim",
     },
-    -- {
-    --     "nicolas-martin/region-folding.nvim",
-    --     event = { "BufReadPost", "BufNewFile" },
-    --     opts = function()
-    --         require("config.region-folding")
-    --     end,
-    -- },
+    {
+        "mg979/vim-visual-multi",
+        branch = "master",
+    },
 }

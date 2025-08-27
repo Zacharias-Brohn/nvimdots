@@ -7,14 +7,6 @@ local capabilities = vim.tbl_deep_extend(
     cmp_lsp.default_capabilities()
 )
 
-local on_attach = function(client, bufnr)
-    if client and client.server_capabilities.documentHighlightProvider then
-        vim.defer_fn(function()
-            vim.lsp.document_color.enable(false)
-        end, 50)
-    end
-end
-
 local cmp_kinds = {
   Text = '  ',
   Method = '  ',
@@ -46,6 +38,7 @@ local cmp_kinds = {
 require("fidget").setup({})
 require("mason").setup()
 require("mason-lspconfig").setup({
+    automatic_enable = true,
     ensure_installed = {
         "lua_ls",
         "rust_analyzer",
@@ -58,11 +51,10 @@ require("mason-lspconfig").setup({
             }
         end,
 
-        cssls = function()
+        ["css-lsp"] = function()
             local lspconfig = require("lspconfig")
             lspconfig.cssls.setup {
                 capabilities = capabilities,
-                on_attach = on_attach,
             }
         end,
 

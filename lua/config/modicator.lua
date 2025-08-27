@@ -5,7 +5,7 @@ require("modicator").setup({
             bold = false,
             italic = false,
         },
-        use_cursorline_background = false,
+        use_cursorline_background = true,
     },
     integration = {
         lualine = {

@@ -16,3 +16,7 @@ vim.filetype.add({
 })
 
 vim.cmd[[colorscheme onedark]]
+
+-- vim.lsp.document_color = {
+--     enable = false
+-- }
