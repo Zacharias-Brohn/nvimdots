@@ -26,6 +26,7 @@ map('n', '<leader>u', require('undotree').toggle, { noremap = true, silent = tru
 
 -- Telescope grep
 map("n", "<leader>g", require("telescope.builtin").live_grep, {desc = "Telescope grep" })
+map("n", "<leader>f", require("telescope.builtin").find_files, {desc = "Telescope find files" })
 
 map("n", "<A-->", ":bdelete<CR>")
 -- map("n", "<SA-->", ":BufferRestore<CR>")

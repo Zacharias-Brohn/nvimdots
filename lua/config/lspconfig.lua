@@ -7,6 +7,14 @@ local capabilities = vim.tbl_deep_extend(
     cmp_lsp.default_capabilities()
 )
 
+local on_attach = function(client, bufnr)
+    if client and client.server_capabilities.documentHighlightProvider then
+        vim.defer_fn(function()
+            vim.lsp.document_color.enable(false)
+        end, 50)
+    end
+end
+
 local cmp_kinds = {
   Text = '  ',
   Method = '  ',
@@ -46,7 +54,15 @@ require("mason-lspconfig").setup({
     handlers = {
         function(server_name) -- default handler (optional)
             require("lspconfig")[server_name].setup {
-                capabilities = capabilities
+                capabilities = capabilities,
+            }
+        end,
+
+        cssls = function()
+            local lspconfig = require("lspconfig")
+            lspconfig.cssls.setup {
+                capabilities = capabilities,
+                on_attach = on_attach,
             }
         end,
 
@@ -181,7 +197,6 @@ lspconfig.zls.setup({
 -- EXAMPLE
 local servers = {
     "html",
-    "cssls",
     "bashls",
     "texlab",
     "pyright",
