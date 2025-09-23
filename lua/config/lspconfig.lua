@@ -163,41 +163,58 @@ vim.diagnostic.config({
     },
 })
 
-local lspconfig = require "lspconfig"
+local lspconfig = vim.lsp.config
 
-lspconfig.zls.setup({
-    capabilities = capabilities,
-    root_dir = lspconfig.util.root_pattern(".git", "build.zig", "zls.json"),
+lspconfig("texlab", {
+    cmd = { "texlab" },
+    filetypes = { "tex", "bib", "plaintex" },
+    root_markers = { ".git", ".latexmkrc", "latexmkrc", ".texlabroot", "texlabroot", "Tectonic.toml" },
     settings = {
-        zls = {
-            enable_inlay_hints = true,
-            enable_snippets = true,
-            warn_style = true,
+        texlab = {
+            rootDirectory = nil,
+            build = {
+                executable = "latexmk",
+                args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+                onSave = true,
+                forwardSearchAfter = true,
+            },
+            forwardSearch = {
+                executable = "zathura",
+                args = {
+                    "--synctex-editor-command",
+                    [[ nvim-texlabconfig -file '%%%{input}' -line %%%{line} -server ]] .. vim.v.servername,
+                    "--synctex-forward",
+                    "%l:1:%f",
+                    "%p",
+                },
+            },
+            chktex = {
+                onEdit = false,
+                onOpenAndSave = true,
+            },
+            diagnosticsDelay = 300,
+            latexFormatter = "latexindent",
+            latexindent = {
+                ['local'] = nil,
+                modifyLineBreaks = false,
+            },
+            bibtexFormatter = "texlab",
+            formatterLineLength = 80,
         },
     },
 })
--- lspconfig.zls.setup {
---     cmd = { "zls" },
---     settings = {
---         zls = {
---             enable_build_on_save = true,
---             semantic_tokens = "partial",
---         },
---     },
--- }
 
--- EXAMPLE
+local lspenable = vim.lsp.enable
 local servers = {
     "html",
     "bashls",
-    "texlab",
     "pyright",
     "ts_ls",
+    "texlab",
     -- "jdtls",
     "sourcekit",
 }
 
 for _, server in ipairs(servers) do
-    lspconfig[server].setup {
-    }
+    lspenable(server)
 end

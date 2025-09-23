@@ -248,4 +248,14 @@ return {
             require("config.chatgpt")
         end,
     },
+    {
+        "elkowar/yuck.vim",
+    },
+    {
+        "f3fora/nvim-texlabconfig",
+        config = function()
+            require("config.texlab")
+        end,
+        build = "go build",
+    },
 }
