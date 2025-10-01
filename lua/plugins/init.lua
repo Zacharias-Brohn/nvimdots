@@ -5,7 +5,6 @@ return {
             require("config.treesitter")
         end,
     },
-
     {
         "rmagatti/auto-session",
         config = function()
@@ -89,26 +88,6 @@ return {
         "rcarriga/nvim-notify",
         config = function()
             require "config.notify"
-        end,
-    },
-    {
-        "zbirenbaum/copilot.lua",
-        lazy = true,
-        cmd = "Copilot",
-        event = "InsertEnter",
-        config = function()
-            require "config.copilot"
-        end,
-    },
-    {
-        "CopilotC-Nvim/CopilotChat.nvim",
-        dependencies = {
-            { "zbirenbaum/copilot.lua" },
-            { "nvim-lua/plenary.nvim", branch = "master" },
-        },
-        build = "make tiktoken",
-        config = function()
-            require "config.copilotchat"
         end,
     },
     {
@@ -208,9 +187,6 @@ return {
         },
     },
     {
-        "andweeb/presence.nvim",
-    },
-    {
         "mfussenegger/nvim-jdtls",
     },
     {
@@ -235,27 +211,5 @@ return {
     {
         "mg979/vim-visual-multi",
         branch = "master",
-    },
-    {
-        "jackMort/ChatGPT.nvim",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "nvim-lua/plenary.nvim",
-            "folke/trouble.nvim",
-            "nvim-telescope/telescope.nvim"
-        },
-        config = function()
-            require("config.chatgpt")
-        end,
-    },
-    {
-        "elkowar/yuck.vim",
-    },
-    {
-        "f3fora/nvim-texlabconfig",
-        config = function()
-            require("config.texlab")
-        end,
-        build = "go build",
     },
 }
