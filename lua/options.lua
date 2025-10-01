@@ -20,7 +20,7 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 vim.opt.textwidth = 80
-vim.opt.formatoptions = "tcrqnj"
+vim.opt.formatoptions = "rqnj"
 -- vim.opt.foldmethod = "expr"
 -- vim.opt.foldexpr = "v:lua.require('config.testfold').foldexpr()"
 -- vim.opt.foldenable = true
