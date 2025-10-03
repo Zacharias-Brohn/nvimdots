@@ -206,13 +206,13 @@ lspconfig("texlab", {
 
 local lspenable = vim.lsp.enable
 local servers = {
-    "html",
+    -- "html",
     "bashls",
     "pyright",
-    "ts_ls",
-    "texlab",
+    -- "ts_ls",
+    -- "texlab",
     -- "jdtls",
-    "sourcekit",
+    -- "sourcekit",
 }
 
 for _, server in ipairs(servers) do
