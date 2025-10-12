@@ -182,6 +182,7 @@ return {
     },
     {
         "neovim/nvim-lspconfig",
+        enabled = false,
         dependencies = {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
@@ -258,4 +259,11 @@ return {
         end,
         build = "go build",
     },
+    {
+        "lancewilhelm/horizon-extended.nvim",
+    },
+    {
+        "neoclide/coc.nvim",
+        branch = "release",
+    }
 }

@@ -3,7 +3,7 @@
 		"hyprlang": {
 			"command": "hyprls",
 			"filetypes": ["hyprlang"]
-		}
+		},
 	},
     "git.addedSign.hlGroup": "GitGutterAdd",
     "git.changedSign.hlGroup": "GitGutterChange",

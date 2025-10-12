@@ -8,31 +8,31 @@ local capabilities = vim.tbl_deep_extend(
 )
 
 local cmp_kinds = {
-  Text = '  ',
-  Method = '  ',
-  Function = '  ',
-  Constructor = '  ',
-  Field = '  ',
-  Variable = '  ',
-  Class = '  ',
-  Interface = '  ',
-  Module = '  ',
-  Property = '  ',
-  Unit = '  ',
-  Value = '  ',
-  Enum = '  ',
-  Keyword = '  ',
-  Snippet = '  ',
-  Color = '  ',
-  File = '  ',
-  Reference = '  ',
-  Folder = '  ',
-  EnumMember = '  ',
-  Constant = '  ',
-  Struct = '  ',
-  Event = '  ',
-  Operator = '  ',
-  TypeParameter = '  ',
+    Text = '  ',
+    Method = '  ',
+    Function = '  ',
+    Constructor = '  ',
+    Field = '  ',
+    Variable = '  ',
+    Class = '  ',
+    Interface = '  ',
+    Module = '  ',
+    Property = '  ',
+    Unit = '  ',
+    Value = '  ',
+    Enum = '  ',
+    Keyword = '  ',
+    Snippet = '  ',
+    Color = '  ',
+    File = '  ',
+    Reference = '  ',
+    Folder = '  ',
+    EnumMember = '  ',
+    Constant = '  ',
+    Struct = '  ',
+    Event = '  ',
+    Operator = '  ',
+    TypeParameter = '  ',
 }
 
 require("fidget").setup({})
@@ -50,6 +50,11 @@ require("mason-lspconfig").setup({
                 capabilities = capabilities,
             }
         end,
+
+        -- lemminx = function()
+        --     local lspconfig = vim.lsp.config
+        --     local lspenable = vim.lsp.enable
+        -- end,
 
         ["css-lsp"] = function()
             local lspconfig = require("lspconfig")
@@ -204,6 +209,10 @@ lspconfig("texlab", {
     },
 })
 
+lspconfig("qmlls", {
+    cmd = { "qmlls6" },
+})
+
 local lspenable = vim.lsp.enable
 local servers = {
     "html",
@@ -213,6 +222,7 @@ local servers = {
     "texlab",
     -- "jdtls",
     "sourcekit",
+    "qmlls",
 }
 
 for _, server in ipairs(servers) do
