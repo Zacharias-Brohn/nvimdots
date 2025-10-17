@@ -182,7 +182,7 @@ return {
     },
     {
         "neovim/nvim-lspconfig",
-        enabled = false,
+        enabled = true,
         dependencies = {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
@@ -238,18 +238,6 @@ return {
         branch = "master",
     },
     {
-        "jackMort/ChatGPT.nvim",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "nvim-lua/plenary.nvim",
-            "folke/trouble.nvim",
-            "nvim-telescope/telescope.nvim"
-        },
-        config = function()
-            require("config.chatgpt")
-        end,
-    },
-    {
         "elkowar/yuck.vim",
     },
     {
@@ -263,7 +251,6 @@ return {
         "lancewilhelm/horizon-extended.nvim",
     },
     {
-        "neoclide/coc.nvim",
-        branch = "release",
+        "vimpostor/vim-tpipeline",
     }
 }

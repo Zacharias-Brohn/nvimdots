@@ -1,11 +1,55 @@
 {
-	"languageserver": {
+    "suggest.noselect": true,
+    "suggest.enablePreselect": false,
+    "suggest.triggerAfterInsertEnter": true,
+    "inlineSuggest.autoTrigger": false,
+    "suggest.completionItemKindLabels": {
+        "text": "",
+        "method": "",
+        "function": "",
+        "constructor": "",
+        "field": "",
+        "variable": "",
+        "class": "",
+        "interface": "",
+        "module": "",
+        "property": "",
+        "unit": "",
+        "value": "",
+        "enum": "",
+        "keyword": "",
+        "snippet": "",
+        "color": "",
+        "file": "",
+        "reference": "",
+        "folder": "",
+        "enumMember": "",
+        "constant": "",
+        "struct": "",
+        "event": "",
+        "operator": "",
+        "typeParameter": "",
+        "default": ""
+    },
+    "suggest.floatConfig": {
+        "maxWidth": 80,
+        "winblend": 1,
+    },
+    "suggest.virtualText": false,
+
+    "languageserver": {
 		"hyprlang": {
 			"command": "hyprls",
 			"filetypes": ["hyprlang"]
 		},
+        "qml": {
+            "command": "qmlls6",
+            "filetypes": ["qml"]
+        }
 	},
     "git.addedSign.hlGroup": "GitGutterAdd",
     "git.changedSign.hlGroup": "GitGutterChange",
     "git.removedSign.hlGroup": "GitGutterDelete",
+    "coc.source.file.enable": true,
+    "coc.source.file.ignoreHidden": false,
 }
