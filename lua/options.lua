@@ -27,7 +27,6 @@ vim.opt.formatoptions = "rqnj"
 -- vim.opt.foldlevel = 0
 -- vim.opt.foldlevelstart = 0
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-vim.o.laststatus = 3
 vim.o.clipboard = "unnamedplus"
 vim.o.cursorline = true
 vim.o.cursorlineopt = "number"
@@ -36,6 +35,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.mouse = "a"
 vim.o.number = true
+vim.o.termguicolors = true
 vim.o.numberwidth = 3
 vim.o.ruler = false
 vim.o.showmode = false
@@ -52,6 +52,8 @@ local is_windows = vim.fn.has "win32" ~= 0
 local sep = is_windows and "\\" or "/"
 local delim = is_windows and ";" or ":"
 vim.env.PATH = table.concat({ vim.fn.stdpath "data", "mason", "bin" }, sep) .. delim .. vim.env.PATH
+
+vim.api.nvim_set_hl( 0, "Cursor", { reverse = true })
 
 -- vim-tpipeline
 vim.g.tpipeline_restore = 1

@@ -1,3 +1,4 @@
+vim.cmd('source ' .. vim.fn.stdpath("config") .. "/cursor.vim")
 require("config.lazy")
 require("options")
 require("globals")
@@ -15,5 +16,3 @@ vim.filetype.add({
         [".*/uwsm/env.*"] = "zsh",
     }
 })
-
-vim.cmd[[colorscheme onedark]]

@@ -76,6 +76,7 @@ local virtual_env = function()
 end
 
 require("lualine").setup {
+    laststatus = 0,
     options = {
         icons_enabled = true,
         theme = "auto",

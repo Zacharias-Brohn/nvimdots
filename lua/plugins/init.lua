@@ -5,7 +5,17 @@ return {
             require("config.treesitter")
         end,
     },
-
+    {
+        "sainnhe/edge",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.g.edge_enable_italic = 1
+            vim.g.edge_style = "default"
+            vim.g.edge_menu_selection_background = "purple"
+            vim.cmd("colorscheme edge")
+        end,
+    },
     {
         "rmagatti/auto-session",
         config = function()
@@ -48,16 +58,21 @@ return {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
         config = function ()
+            if vim.env.TMUX then
+                vim.api.nvim_create_autocmd({ "FocusGained", "ColorScheme", "VimEnter" }, {
+                    callback = function()
+                        vim.defer_fn( function()
+                            vim.opt.laststatus = 0
+                        end, 100)
+                    end,
+                })
+                vim.o.laststatus = 0
+            end
             require("config.lualine")
         end,
     },
     {
         "mawkler/modicator.nvim",
-        setup = function()
-            vim.o.cursorline = true
-            vim.o.number = true
-            vim.o.termguicolors = true
-        end,
         config = function()
             require("config.modicator")
         end
@@ -252,5 +267,20 @@ return {
     },
     {
         "vimpostor/vim-tpipeline",
+    },
+    {
+        "yazeed1s/minimal.nvim",
+        config = function()
+            vim.g.minimal_italic_comments = true
+        end,
+    },
+    {
+        "vague2k/huez.nvim",
+        branch = "stable",
+        event = "UIEnter",
+        import = "huez-manager.import",
+        config = function()
+            require("config.huez")
+        end,
     }
 }

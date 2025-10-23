@@ -29,6 +29,7 @@ local cmp_kinds = {
 local cmp = require('cmp')
 
 cmp.setup({
+    preselect = 'None',
     formatting = {
         fields = { 'kind', 'abbr' },
         format = function(_, vim_item)

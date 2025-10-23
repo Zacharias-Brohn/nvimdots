@@ -98,6 +98,7 @@ require("mason-lspconfig").setup({
 })
 
 cmp.setup {
+    preselect = 'None',
     formatting = {
         fields = { 'kind', 'abbr' },
         format = function(entry, vim_item)
