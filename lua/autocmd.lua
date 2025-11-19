@@ -9,3 +9,9 @@ autocmd("LspAttach", {
 vim.api.nvim_create_autocmd("VimLeave", {
     command = "set guicursor=a:ver25-Cursor"
 })
+
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+   callback = function()
+     vim.diagnostic.open_float(nil, { focus = false })
+   end
+})
