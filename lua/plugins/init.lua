@@ -13,7 +13,6 @@ return {
             vim.g.edge_enable_italic = 1
             vim.g.edge_style = "default"
             vim.g.edge_menu_selection_background = "purple"
-            vim.cmd("colorscheme edge")
         end,
     },
     {
@@ -275,12 +274,38 @@ return {
         end,
     },
     {
-        "vague2k/huez.nvim",
-        branch = "stable",
-        event = "UIEnter",
-        import = "huez-manager.import",
+        "ThePrimeagen/refactoring.nvim",
         config = function()
-            require("config.huez")
+            require("config.refactoring")
         end,
+    },
+    {
+        "Yazeed1s/minimal.nvim",
+        config = function()
+            vim.g.minimal_italic_comments = true
+            vim.g.minimal_italic_functions = true
+        end,
+    },
+    {
+        "propet/colorscheme-persist.nvim",
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+        },
+        lazy = false,
+        config = true,
+        keys = {
+            {
+                "<leader>sp",
+                function()
+                    require("colorscheme-persist").picker()
+                end,
+                mode = "n",
+            },
+        },
+        opts = {
+            picker_opts = require("telescope.themes").get_dropdown({
+                enable_preview = true,
+            }),
+        }
     }
 }

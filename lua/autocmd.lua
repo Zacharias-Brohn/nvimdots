@@ -7,5 +7,5 @@ autocmd("LspAttach", {
 })
 
 vim.api.nvim_create_autocmd("VimLeave", {
-  command = "set guicursor=a:ver25"
+    command = "set guicursor=a:ver25-Cursor"
 })
