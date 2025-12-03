@@ -3,8 +3,12 @@ vim.opt.relativenumber = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.opt.expandtab = false
 vim.opt.smartindent = false
+
+vim.o.list = true
+vim.opt.listchars = { tab = "··", trail = "·", nbsp = "_" }
+
 vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.swapfile = false
@@ -21,11 +25,6 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 vim.opt.textwidth = 80
 vim.opt.formatoptions = "rqnj"
--- vim.opt.foldmethod = "expr"
--- vim.opt.foldexpr = "v:lua.require('config.testfold').foldexpr()"
--- vim.opt.foldenable = true
--- vim.opt.foldlevel = 0
--- vim.opt.foldlevelstart = 0
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 vim.o.clipboard = "unnamedplus"
 vim.o.cursorline = true
