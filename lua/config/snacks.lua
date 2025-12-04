@@ -11,7 +11,7 @@ return {
 			enabled = true,
 			scope = {
 				enabled = true,
-				underline = true,
+				underline = false,
 			},
 			chunk = {
 				enabled = false,
