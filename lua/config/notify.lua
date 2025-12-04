@@ -2,7 +2,7 @@ vim.notify = require('notify')
 local dap = require('dap')
 
 require('notify').setup({
-    render = "wrapped-default",
+	render = "wrapped-default",
 	timeout = 6000,
 	max_width = 50,
 	minimum_width = 50,
@@ -15,10 +15,10 @@ require('notify').setup({
 		DEBUG = "",
 		TRACE = "✎",
 	},
-    on_open = function(win)
-        -- vim.api.nvim_win_set_option(win, 'wrap', true)
-        vim.api.nvim_win_set_option(win, 'breakat', ' ')
-    end,
+	on_open = function(win)
+		-- vim.api.nvim_win_set_option(win, 'wrap', true)
+		vim.api.nvim_win_set_option(win, 'breakat', ' ')
+	end,
 })
 
 -- Utility functions shared between progress reports for LSP and DAP

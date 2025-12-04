@@ -10,10 +10,20 @@ map("v", "<C-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selected text up" })
 map("v", "<C-Down>", ":m '>+1<CR>gv=gv", { desc = "Move selected text down" })
 
 -- Alt + Arrow Key to change buffer
-map("n", "<A-Left>", "<C-w>h", { desc = "Move to left split" })
-map("n", "<A-Down>", "<C-w>j", { desc = "Move to bottom split" })
-map("n", "<A-Up>", "<C-w>k", { desc = "Move to top split" })
-map("n", "<A-Right>", "<C-w>l", { desc = "Move to right split" })
+-- map("n", "<A-Left>", "<C-w>h", { desc = "Move to left split" })
+-- map("n", "<A-Down>", "<C-w>j", { desc = "Move to bottom split" })
+-- map("n", "<A-Up>", "<C-w>k", { desc = "Move to top split" })
+-- map("n", "<A-Right>", "<C-w>l", { desc = "Move to right split" })
+
+map("n", "<A-Left>", "<cmd>lua require('tmux').move_left()<CR>", { desc = "Move to left split" })
+map("n", "<A-Down>", "<cmd>lua require('tmux').move_bottom()<CR>", { desc = "Move to bottom split" })
+map("n", "<A-Up>", "<cmd>lua require('tmux').move_top()<CR>", { desc = "Move to top split" })
+map("n", "<A-Right>", "<cmd>lua require('tmux').move_right()<CR>", { desc = "Move to right split" })
+
+map("n", "<C-Left>", "<cmd>lua require('tmux').resize_left()<CR>", { desc = "Move to left split" })
+map("n", "<C-Down>", "<cmd>lua require('tmux').resize_bottom()<CR>", { desc = "Move to bottom split" })
+map("n", "<C-Up>", "<cmd>lua require('tmux').resize_top()<CR>", { desc = "Move to top split" })
+map("n", "<C-Right>", "<cmd>lua require('tmux').resize_right()<CR>", { desc = "Move to right split" })
 
 -- Copilot Chat buffer
 map("n", "<A-c>", vim.cmd.CopilotChatToggle)
@@ -55,7 +65,15 @@ map("i", "<C-c>", "<Esc>")
 map("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 map("n", "<leader><leader>", function()
-    vim.cmd("so")
+	vim.cmd("so")
 end)
 
 map("n", "<A-v>", "<cmd>ChatGPT<CR>")
+
+map("n", "<leader>fm", "<cmd>TailwindConcealToggle<CR>", { desc = "Toggle Tailwind Conceal" })
+
+-- Terminal
+map("n", "<C-q>", function() Snacks.terminal.toggle() end, { desc = "Toggle Terminal" })
+
+-- Gitbrowse
+map("n", "<leader>gb", function() Snacks.gitbrowse.open() end )
