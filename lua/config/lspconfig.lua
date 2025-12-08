@@ -1,3 +1,17 @@
+local function flatten_to_array(t)
+	local res = {}
+	local function _flatten(tbl)
+		for _, v in ipairs(tbl) do
+			if type(v) == "table" then
+				_flatten(v)
+			else
+				table.insert(res, v)
+			end
+		end
+	end
+	_flatten(t)
+	return res
+end
 local cmp = require("cmp")
 local cmp_lsp = require("cmp_nvim_lsp")
 local capabilities = vim.tbl_deep_extend(
@@ -229,8 +243,16 @@ local servers = {
 	"sourcekit",
 	"qmlls",
 	"tailwindcss",
+	require("mason-lspconfig").get_installed_servers(),
 }
 
-for _, server in ipairs(servers) do
+local flat_servers = flatten_to_array(servers)
+
+for _, server in ipairs(flat_servers) do
+	lspconfig(server, {
+		on_attach = function(client, bufnr)
+			require("workspace-diagnostics").populate_workspace_diagnostics( client, bufnr )
+		end,
+	})
 	lspenable(server)
 end

@@ -9,6 +9,7 @@ vim.opt.smartindent = false
 vim.o.list = true
 vim.opt.listchars = { tab = "··", trail = "·", nbsp = "_" }
 
+vim.opt.laststatus = 3
 vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.swapfile = false
@@ -54,5 +55,9 @@ vim.env.PATH = table.concat({ vim.fn.stdpath "data", "mason", "bin" }, sep) .. d
 
 vim.api.nvim_set_hl( 0, "Cursor", { reverse = true })
 
--- vim-tpipeline
-vim.g.tpipeline_restore = 1
+vim.api.nvim_create_user_command('Redir', function(ctx)
+	local lines = vim.split(vim.api.nvim_exec(ctx.args, true), '\n', { plain = true })
+	vim.cmd('new')
+	vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+	vim.opt_local.modified = false
+end, { nargs = '+', complete = 'command' })

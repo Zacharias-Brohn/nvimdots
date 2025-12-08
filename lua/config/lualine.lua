@@ -75,6 +75,14 @@ local virtual_env = function()
 	end
 end
 
+local lint_progress = function()
+	local linters = require("lint").get_running()
+	if #linters == 0 then
+		return ""
+	end
+	return table.concat(linters, ", ")
+end
+
 require("lualine").setup {
 	laststatus = 0,
 	options = {
@@ -133,8 +141,12 @@ require("lualine").setup {
 				color = { fg = "black", bg = "#f46868" },
 			},
 			{
+				lint_progress,
+				icon = "󱉶 ",
+			},
+			{
 				get_active_lsp,
-				icon = " LSP:",
+				icon = " ",
 			},
 			{
 				"diagnostics",

@@ -9,6 +9,17 @@ if vim.env.PROF then
 	})
 end
 
+vim.g.wbr = "test"
+
+local home = os.getenv("HOME")
+
+package.path = package.path
+  .. ";" .. home .. "/.luarocks/share/lua/5.4/?.lua"
+  .. ";" .. home .. "/.luarocks/share/lua/5.4/?/init.lua"
+
+package.cpath = package.cpath
+  .. ";" .. home .. "/.luarocks/lib/lua/5.4/?.so"
+
 vim.cmd('source ' .. vim.fn.stdpath("config") .. "/cursor.vim")
 require("config.lazy")
 require("options")
@@ -28,3 +39,5 @@ vim.filetype.add({
 		[".*/uwsm/env.*"] = "zsh",
 	}
 })
+
+vim.cmd("colorscheme github_dark")

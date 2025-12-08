@@ -1,4 +1,14 @@
 return {
+	-- {
+	-- 	"nvimdev/lspsaga.nvim",
+	-- 	config = function()
+	-- 		require("config.lspsaga")
+	-- 	end,
+	-- 	dependencies = {
+	-- 		"nvim-tree/nvim-web-devicons",
+	-- 		"nvim-treesitter/nvim-treesitter",
+	-- 	},
+	-- },
 	{
 		"nvim-mini/mini.nvim",
 		version = false,
@@ -65,16 +75,6 @@ return {
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
 		config = function ()
-			if vim.env.TMUX then
-				vim.api.nvim_create_autocmd({ "FocusGained", "ColorScheme", "VimEnter" }, {
-					callback = function()
-						vim.defer_fn( function()
-							vim.opt.laststatus = 0
-						end, 100)
-					end,
-				})
-				vim.o.laststatus = 0
-			end
 			require("config.lualine")
 		end,
 	},
@@ -274,10 +274,49 @@ return {
 			}),
 		}
 	},
+	-- {
+	-- 	"aserowy/tmux.nvim",
+	-- 	config = function()
+	-- 		require("config.tmux")
+	-- 	end,
+	-- },
 	{
-		"aserowy/tmux.nvim",
+		"aznhe21/actions-preview.nvim",
 		config = function()
-			require("config.tmux")
+			require("config.actions-preview")
 		end,
+	},
+	{
+		"mfussenegger/nvim-lint",
+		config = function()
+			require("config.lint")
+		end,
+	},
+	{
+		"rachartier/tiny-inline-diagnostic.nvim",
+		config = function()
+			require("config.TID")
+		end,
+	},
+	{
+		"MunifTanjim/nui.nvim",
+	},
+	{
+		"artemave/workspace-diagnostics.nvim",
+	},
+	{
+		require("config.dev-tools")
+	},
+	{
+		"Fildo7525/pretty_hover",
+		event = "LspAttach",
+		opts = {}
+	},
+	{
+		"knubie/vim-kitty-navigator",
+		build = "cp ./*.py ~/.config/kitty/"
+	},
+	{
+		require("config.dropbar")
 	},
 }

@@ -2,7 +2,7 @@ require("tmux").setup({
 	copy_sync = {
 		enable = true,
 		redirect_to_clipboard = true,
-		sync_clipboard = true,
+		sync_clipboard = false,
 		sync_registers = true,
 	},
 	navigation = {
