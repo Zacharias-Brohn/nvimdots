@@ -3,7 +3,7 @@ return {
 		"olimorris/onedarkpro.nvim",
 		priority = 1000,
 		config = function()
-			require("config.themelight")
+			require "config.themelight"
 		end,
 	},
 	{
@@ -12,7 +12,7 @@ return {
 	{
 		"loctvl842/monokai-pro.nvim",
 		config = function()
-			require("config.monokaipro")
+			require "config.monokaipro"
 		end,
 	},
 	{
@@ -42,5 +42,18 @@ return {
 		"projekt0n/github-nvim-theme",
 		lazy = false,
 		priority = 1000,
-	}
+		config = function()
+			require "config.githubtheme"
+		end,
+	},
+	{
+		"alexmozaidze/palenight.nvim",
+	},
+	{
+		"Yazeed1s/minimal.nvim",
+		init = function()
+			vim.g.minimal_italic_comments = true
+			vim.g.minimal_italic_keywords = true
+		end,
+	},
 }
