@@ -1,25 +1,25 @@
 return {
 	{
-		require("plugins.colorschemes")
+		require "plugins.colorschemes",
 	},
 	{
 		"nvim-mini/mini.nvim",
 		version = false,
 
 		modules = function()
-			require("config.mini-modules")
+			require "config.mini-modules"
 		end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
 		config = function()
-			require("config.treesitter")
+			require "config.treesitter"
 		end,
 	},
 	{
 		"rmagatti/auto-session",
 		config = function()
-			require("config.autosession")
+			require "config.autosession"
 		end,
 	},
 	{
@@ -28,7 +28,7 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 		config = function()
-			require("config.telescope")
+			require "config.telescope"
 		end,
 	},
 	{
@@ -44,26 +44,26 @@ return {
 		"akinsho/bufferline.nvim",
 		event = "VeryLazy",
 		config = function()
-			require("config.barbar")
+			require "config.barbar"
 		end,
 	},
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
-		config = function ()
-			require("config.lualine")
+		config = function()
+			require "config.lualine"
 		end,
 	},
 	{
 		"mawkler/modicator.nvim",
 		config = function()
-			require("config.modicator")
-		end
+			require "config.modicator"
+		end,
 	},
 	{
 		"jiaoshijie/undotree",
 		config = function()
-			require("config.undotree")
+			require "config.undotree"
 		end,
 	},
 	{
@@ -74,7 +74,7 @@ return {
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		config = function()
-			require("config.autopairs")
+			require "config.autopairs"
 		end,
 	},
 	{
@@ -109,17 +109,17 @@ return {
 	{
 		"mfussenegger/nvim-dap",
 		config = function()
-			require("config.dapconf")
+			require "config.dapconf"
 		end,
 	},
 	{
-		require("config.snacks")
+		require "config.snacks",
 	},
 	{
 		"folke/lazydev.nvim",
 		ft = "lua",
 		opts = function()
-			require("config.lazydev")
+			require "config.lazydev"
 		end,
 	},
 	{
@@ -131,20 +131,21 @@ return {
 			"L3MON4D3/LuaSnip",
 			-- "saadparwaiz1/cmp_luasnip",
 			"j-hui/fidget.nvim",
+			"b0o/schemastore.nvim",
 		},
 		config = function()
-			require("config.lspconfig")
+			require "config.lspconfig"
 		end,
 	},
-	-- {
-	-- 	"smolck/command-completion.nvim",
-	-- 	opts = {
-	-- 		border = nil,
-	-- 		highlight_selection = true,
-	-- 		use_matchfuzzy = true,
-	-- 		tab_completion = true,
-	-- 	},
-	-- },
+	{
+		"smolck/command-completion.nvim",
+		opts = {
+			border = nil,
+			highlight_selection = true,
+			use_matchfuzzy = true,
+			tab_completion = true,
+		},
+	},
 	{
 		"andweeb/presence.nvim",
 	},
@@ -158,7 +159,7 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 		config = function()
-			require("config.harpoon")
+			require "config.harpoon"
 		end,
 	},
 	-- {
@@ -180,7 +181,7 @@ return {
 	{
 		"f3fora/nvim-texlabconfig",
 		config = function()
-			require("config.texlab")
+			require "config.texlab"
 		end,
 		build = "go build",
 	},
@@ -199,7 +200,7 @@ return {
 	{
 		"ThePrimeagen/refactoring.nvim",
 		config = function()
-			require("config.refactoring")
+			require "config.refactoring"
 		end,
 	},
 	{
@@ -226,27 +227,27 @@ return {
 			},
 		},
 		opts = {
-			picker_opts = require("telescope.themes").get_dropdown({
+			picker_opts = require("telescope.themes").get_dropdown {
 				enable_preview = true,
-			}),
-		}
+			},
+		},
 	},
 	{
 		"aznhe21/actions-preview.nvim",
 		config = function()
-			require("config.actions-preview")
+			require "config.actions-preview"
 		end,
 	},
 	{
 		"mfussenegger/nvim-lint",
 		config = function()
-			require("config.lint")
+			require "config.lint"
 		end,
 	},
 	{
 		"rachartier/tiny-inline-diagnostic.nvim",
 		config = function()
-			require("config.TID")
+			require "config.TID"
 		end,
 	},
 	{
@@ -256,27 +257,37 @@ return {
 		"artemave/workspace-diagnostics.nvim",
 	},
 	{
-		require("config.dev-tools")
+		require "config.dev-tools",
 	},
 	{
 		"Fildo7525/pretty_hover",
 		event = "LspAttach",
-		opts = {}
+		opts = {},
 	},
 	{
 		"knubie/vim-kitty-navigator",
-		build = "cp ./*.py ~/.config/kitty/"
+		build = "cp ./*.py ~/.config/kitty/",
 	},
 	{
-		require("config.dropbar")
+		require "config.dropbar",
 	},
 	{
-		require("config.blink")
+		require "config.blink",
 	},
 	{
 		"lewis6991/gitsigns.nvim",
 		config = function()
-			require("config.gitsigns")
+			require "config.gitsigns"
+		end,
+	},
+	{
+		"sbdchd/neoformat",
+		init = function()
+			vim.cmd(
+				"source "
+					.. vim.fn.stdpath "config"
+					.. "/lua/plugins/neoformat.vim"
+			)
 		end,
 	},
 }

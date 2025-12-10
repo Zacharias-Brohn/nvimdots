@@ -12,46 +12,15 @@ local function flatten_to_array(t)
 	_flatten(t)
 	return res
 end
--- local cmp = require("cmp")
--- local cmp_lsp = require("cmp_nvim_lsp")
 local capabilities = vim.tbl_deep_extend(
 	"force",
 	{},
 	vim.lsp.protocol.make_client_capabilities()
-	-- cmp_lsp.default_capabilities()
 )
 
-local cmp_kinds = {
-	Text = '  ',
-	Method = '  ',
-	Function = '  ',
-	Constructor = '  ',
-	Field = '  ',
-	Variable = '  ',
-	Class = '  ',
-	Interface = '  ',
-	Module = '  ',
-	Property = '  ',
-	Unit = '  ',
-	Value = '  ',
-	Enum = '  ',
-	Keyword = '  ',
-	Snippet = '  ',
-	Color = '  ',
-	File = '  ',
-	Reference = '  ',
-	Folder = '  ',
-	EnumMember = '  ',
-	Constant = '  ',
-	Struct = '  ',
-	Event = '  ',
-	Operator = '  ',
-	TypeParameter = '  ',
-}
-
-require("fidget").setup({})
+require("fidget").setup {}
 require("mason").setup()
-require("mason-lspconfig").setup({
+require("mason-lspconfig").setup {
 	automatic_enable = true,
 	ensure_installed = {
 		"lua_ls",
@@ -66,24 +35,28 @@ require("mason-lspconfig").setup({
 		end,
 
 		["tailwindcss"] = function()
-			local lspconfig = require("lspconfig")
+			local lspconfig = require "lspconfig"
 			lspconfig.tailwindcss.setup {
 				capabilities = capabilities,
 			}
 		end,
 
 		["css-lsp"] = function()
-			local lspconfig = require("lspconfig")
+			local lspconfig = require "lspconfig"
 			lspconfig.cssls.setup {
 				capabilities = capabilities,
 			}
 		end,
 
 		zls = function()
-			local lspconfig = require("lspconfig")
-			lspconfig.zls.setup({
+			local lspconfig = require "lspconfig"
+			lspconfig.zls.setup {
 				capabilities = capabilities,
-				root_dir = lspconfig.util.root_pattern(".git", "build.zig", "zls.json"),
+				root_dir = lspconfig.util.root_pattern(
+					".git",
+					"build.zig",
+					"zls.json"
+				),
 				settings = {
 					zls = {
 						enable_inlay_hints = true,
@@ -91,27 +64,33 @@ require("mason-lspconfig").setup({
 						warn_style = true,
 					},
 				},
-			})
+			}
 			vim.g.zig_fmt_parse_errors = 0
 			vim.g.zig_fmt_autosave = 0
-
 		end,
 		["lua_ls"] = function()
-			local lspconfig = require("lspconfig")
+			local lspconfig = require "lspconfig"
 			lspconfig.lua_ls.setup {
 				capabilities = capabilities,
 				settings = {
 					Lua = {
 						runtime = { version = "Lua 5.1" },
 						diagnostics = {
-							globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
-						}
-					}
-				}
+							globals = {
+								"bit",
+								"vim",
+								"it",
+								"describe",
+								"before_each",
+								"after_each",
+							},
+						},
+					},
+				},
 			}
 		end,
-	}
-})
+	},
+}
 
 -- cmp.setup {
 -- 	preselect = 'None',
@@ -172,7 +151,7 @@ require("mason-lspconfig").setup({
 -- 	}),
 -- }
 
-vim.diagnostic.config({
+vim.diagnostic.config {
 	-- update_in_insert = true,
 	virtual_text = false,
 	virtual_lines = false,
@@ -186,20 +165,32 @@ vim.diagnostic.config({
 		header = "",
 		prefix = "",
 	},
-})
+}
 
 local lspconfig = vim.lsp.config
 
 lspconfig("texlab", {
 	cmd = { "texlab" },
 	filetypes = { "tex", "bib", "plaintex" },
-	root_markers = { ".git", ".latexmkrc", "latexmkrc", ".texlabroot", "texlabroot", "Tectonic.toml" },
+	root_markers = {
+		".git",
+		".latexmkrc",
+		"latexmkrc",
+		".texlabroot",
+		"texlabroot",
+		"Tectonic.toml",
+	},
 	settings = {
 		texlab = {
 			rootDirectory = nil,
 			build = {
 				executable = "latexmk",
-				args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+				args = {
+					"-pdf",
+					"-interaction=nonstopmode",
+					"-synctex=1",
+					"%f",
+				},
 				onSave = true,
 				forwardSearchAfter = true,
 			},
@@ -207,7 +198,8 @@ lspconfig("texlab", {
 				executable = "zathura",
 				args = {
 					"--synctex-editor-command",
-					[[ nvim-texlabconfig -file '%%%{input}' -line %%%{line} -server ]] .. vim.v.servername,
+					[[ nvim-texlabconfig -file '%%%{input}' -line %%%{line} -server ]]
+						.. vim.v.servername,
 					"--synctex-forward",
 					"%l:1:%f",
 					"%p",
@@ -220,7 +212,7 @@ lspconfig("texlab", {
 			diagnosticsDelay = 300,
 			latexFormatter = "latexindent",
 			latexindent = {
-				['local'] = nil,
+				["local"] = nil,
 				modifyLineBreaks = false,
 			},
 			bibtexFormatter = "texlab",
@@ -231,6 +223,27 @@ lspconfig("texlab", {
 
 lspconfig("qmlls", {
 	cmd = { "qmlls6" },
+})
+
+lspconfig("jsonls", {
+	settings = {
+		json = {
+			schemas = require("schemastore").json.schemas(),
+			validate = { enable = true },
+		},
+	},
+})
+
+lspconfig("yamlls", {
+	settings = {
+		yaml = {
+			schemaStore = {
+				enable = false,
+				url = "",
+			},
+			schemas = require("schemastore").yaml.schemas(),
+		},
+	},
 })
 
 local lspenable = vim.lsp.enable
@@ -251,7 +264,10 @@ local flat_servers = flatten_to_array(servers)
 for _, server in ipairs(flat_servers) do
 	lspconfig(server, {
 		on_attach = function(client, bufnr)
-			require("workspace-diagnostics").populate_workspace_diagnostics( client, bufnr )
+			require("workspace-diagnostics").populate_workspace_diagnostics(
+				client,
+				bufnr
+			)
 		end,
 	})
 	lspenable(server)
