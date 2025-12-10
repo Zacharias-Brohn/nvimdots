@@ -12,13 +12,13 @@ local function flatten_to_array(t)
 	_flatten(t)
 	return res
 end
-local cmp = require("cmp")
-local cmp_lsp = require("cmp_nvim_lsp")
+-- local cmp = require("cmp")
+-- local cmp_lsp = require("cmp_nvim_lsp")
 local capabilities = vim.tbl_deep_extend(
 	"force",
 	{},
-	vim.lsp.protocol.make_client_capabilities(),
-	cmp_lsp.default_capabilities()
+	vim.lsp.protocol.make_client_capabilities()
+	-- cmp_lsp.default_capabilities()
 )
 
 local cmp_kinds = {
@@ -113,64 +113,64 @@ require("mason-lspconfig").setup({
 	}
 })
 
-cmp.setup {
-	preselect = 'None',
-	formatting = {
-		fields = { 'kind', 'abbr' },
-		format = function(entry, vim_item)
-			vim_item.kind = cmp_kinds[vim_item.kind] or ''
-			if entry.completion_item.detail then
-				vim_item.menu = entry.completion_item.detail
-			end
-			return vim_item
-		end,
-	},
-	completion = { completeopt = "menu,menuone" },
-	snippet = {
-		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
-		end,
-	},
-
-	mapping = {
-		["<C-p>"] = cmp.mapping.select_prev_item(),
-		["<C-n>"] = cmp.mapping.select_next_item(),
-		["<C-d>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-Space>"] = cmp.mapping.complete(),
-		["<C-e>"] = cmp.mapping.close(),
-		["<CR>"] = cmp.mapping.confirm {
-			behavior = cmp.ConfirmBehavior.Insert,
-			select = true,
-		},
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif require("luasnip").expand_or_jumpable() then
-				require("luasnip").expand_or_jump()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif require("luasnip").jumpable(-1) then
-				require("luasnip").jump(-1)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-	},
-
-	sources = cmp.config.sources({
-		{ name = "path" },
-		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
-		{ name = "buffer" },
-		{ name = "nvim_lua" },
-	}),
-}
+-- cmp.setup {
+-- 	preselect = 'None',
+-- 	formatting = {
+-- 		fields = { 'kind', 'abbr' },
+-- 		format = function(entry, vim_item)
+-- 			vim_item.kind = cmp_kinds[vim_item.kind] or ''
+-- 			if entry.completion_item.detail then
+-- 				vim_item.menu = entry.completion_item.detail
+-- 			end
+-- 			return vim_item
+-- 		end,
+-- 	},
+-- 	completion = { completeopt = "menu,menuone" },
+-- 	snippet = {
+-- 		expand = function(args)
+-- 			require("luasnip").lsp_expand(args.body)
+-- 		end,
+-- 	},
+--
+-- 	mapping = {
+-- 		["<C-p>"] = cmp.mapping.select_prev_item(),
+-- 		["<C-n>"] = cmp.mapping.select_next_item(),
+-- 		["<C-d>"] = cmp.mapping.scroll_docs(-4),
+-- 		["<C-f>"] = cmp.mapping.scroll_docs(4),
+-- 		["<C-Space>"] = cmp.mapping.complete(),
+-- 		["<C-e>"] = cmp.mapping.close(),
+-- 		["<CR>"] = cmp.mapping.confirm {
+-- 			behavior = cmp.ConfirmBehavior.Insert,
+-- 			select = true,
+-- 		},
+-- 		["<Tab>"] = cmp.mapping(function(fallback)
+-- 			if cmp.visible() then
+-- 				cmp.select_next_item()
+-- 			elseif require("luasnip").expand_or_jumpable() then
+-- 				require("luasnip").expand_or_jump()
+-- 			else
+-- 				fallback()
+-- 			end
+-- 		end, { "i", "s" }),
+-- 		["<S-Tab>"] = cmp.mapping(function(fallback)
+-- 			if cmp.visible() then
+-- 				cmp.select_prev_item()
+-- 			elseif require("luasnip").jumpable(-1) then
+-- 				require("luasnip").jump(-1)
+-- 			else
+-- 				fallback()
+-- 			end
+-- 		end, { "i", "s" }),
+-- 	},
+--
+-- 	sources = cmp.config.sources({
+-- 		{ name = "path" },
+-- 		{ name = "nvim_lsp" },
+-- 		{ name = "luasnip" },
+-- 		{ name = "buffer" },
+-- 		{ name = "nvim_lua" },
+-- 	}),
+-- }
 
 vim.diagnostic.config({
 	-- update_in_insert = true,

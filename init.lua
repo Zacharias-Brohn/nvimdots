@@ -9,10 +9,9 @@ if vim.env.PROF then
 	})
 end
 
-vim.g.wbr = "test"
+vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46_cache/"
 
 local home = os.getenv("HOME")
-
 package.path = package.path
   .. ";" .. home .. "/.luarocks/share/lua/5.4/?.lua"
   .. ";" .. home .. "/.luarocks/share/lua/5.4/?/init.lua"
@@ -40,4 +39,6 @@ vim.filetype.add({
 	}
 })
 
-vim.cmd("colorscheme github_dark")
+-- for _, v in ipairs( vim.fn.readdir( vim.g.base46_cache )) do
+-- 	dofile( vim.g.base46_cache .. v )
+-- end

@@ -1,5 +1,7 @@
 local fn = vim.fn
 
+local icons = require("assets.icons").icons
+
 local get_active_lsp = function()
 	local msg = ""
 	local buf_ft = vim.api.nvim_get_option_value("filetype", {})
@@ -40,18 +42,14 @@ local function ime_state()
 end
 
 local diff = function()
-	local git_status = vim.b.gitsigns_status_dict
-	if git_status == nil then
-		return
+	local gitsigns = vim.b.gitsigns_status_dict
+	if gitsigns then
+		return {
+			added = gitsigns.added,
+			modified = gitsigns.changed,
+			removed = gitsigns.removed,
+		}
 	end
-
-	local modify_num = git_status.changed
-	local remove_num = git_status.removed
-	local add_num = git_status.added
-
-	local info = { added = add_num, modified = modify_num, removed = remove_num }
-	-- vim.print(info)
-	return info
 end
 
 local virtual_env = function()
@@ -119,11 +117,16 @@ require("lualine").setup {
 			{
 				"filename",
 				symbols = {
-					readonly = "[󰌾]",
+					readonly = "[ 󰌾 ]",
 				},
 			},
 			{
 				"diff",
+				symbols = {
+					added = icons.git.added,
+					modified = icons.git.modified,
+					removed = icons.git.removed,
+				},
 				source = diff,
 			},
 			{
@@ -151,7 +154,12 @@ require("lualine").setup {
 			{
 				"diagnostics",
 				sources = { "nvim_diagnostic" },
-				symbols = { error = " ", warn = " ", info = " ", hint = " " },
+				symbols = {
+					error = icons.diagnostics.Error,
+					warn = icons.diagnostics.Warn,
+					info = icons.diagnostics.Info,
+					hint = icons.diagnostics.Hint
+				},
 			},
 		},
 		lualine_y = {
@@ -167,7 +175,9 @@ require("lualine").setup {
 			"filetype",
 		},
 		lualine_z = {
-			"progress",
+			{
+				"location",
+			},
 		},
 	},
 	inactive_sections = {

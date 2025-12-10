@@ -1,14 +1,7 @@
 return {
-	-- {
-	-- 	"nvimdev/lspsaga.nvim",
-	-- 	config = function()
-	-- 		require("config.lspsaga")
-	-- 	end,
-	-- 	dependencies = {
-	-- 		"nvim-tree/nvim-web-devicons",
-	-- 		"nvim-treesitter/nvim-treesitter",
-	-- 	},
-	-- },
+	{
+		require("plugins.colorschemes")
+	},
 	{
 		"nvim-mini/mini.nvim",
 		version = false,
@@ -24,26 +17,9 @@ return {
 		end,
 	},
 	{
-		"sainnhe/edge",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			vim.g.edge_enable_italic = 1
-			vim.g.edge_style = "default"
-			vim.g.edge_menu_selection_background = "purple"
-		end,
-	},
-	{
 		"rmagatti/auto-session",
 		config = function()
 			require("config.autosession")
-		end,
-	},
-	{
-		"olimorris/onedarkpro.nvim",
-		priority = 1000,
-		config = function()
-			require("config.themelight")
 		end,
 	},
 	{
@@ -83,9 +59,6 @@ return {
 		config = function()
 			require("config.modicator")
 		end
-	},
-	{
-		"shinchu/lightline-gruvbox.vim",
 	},
 	{
 		"jiaoshijie/undotree",
@@ -143,17 +116,6 @@ return {
 		require("config.snacks")
 	},
 	{
-		"notken12/base46-colors",
-	},
-	-- {
-	--     "mason-org/mason-lspconfig.nvim",
-	--     opts = {},
-	--     dependencies = {
-	--         { "mason-org/mason.nvim", opts = {} },
-	--         "neovim/nvim-lspconfig",
-	--     },
-	-- },
-	{
 		"folke/lazydev.nvim",
 		ft = "lua",
 		opts = function()
@@ -166,28 +128,23 @@ return {
 		dependencies = {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-cmdline",
-			"hrsh7th/nvim-cmp",
 			"L3MON4D3/LuaSnip",
-			"saadparwaiz1/cmp_luasnip",
+			-- "saadparwaiz1/cmp_luasnip",
 			"j-hui/fidget.nvim",
 		},
 		config = function()
 			require("config.lspconfig")
 		end,
 	},
-	{
-		"smolck/command-completion.nvim",
-		opts = {
-			border = nil,
-			highlight_selection = true,
-			use_matchfuzzy = true,
-			tab_completion = true,
-		},
-	},
+	-- {
+	-- 	"smolck/command-completion.nvim",
+	-- 	opts = {
+	-- 		border = nil,
+	-- 		highlight_selection = true,
+	-- 		use_matchfuzzy = true,
+	-- 		tab_completion = true,
+	-- 	},
+	-- },
 	{
 		"andweeb/presence.nvim",
 	},
@@ -204,12 +161,12 @@ return {
 			require("config.harpoon")
 		end,
 	},
-	{
-		"catgoose/nvim-colorizer.lua",
-		config = function()
-			require("config.colorizer")
-		end,
-	},
+	-- {
+	-- 	"catgoose/nvim-colorizer.lua",
+	-- 	config = function()
+	-- 		require("config.colorizer")
+	-- 	end,
+	-- },
 	{
 		"ziglang/zig.vim",
 	},
@@ -274,12 +231,6 @@ return {
 			}),
 		}
 	},
-	-- {
-	-- 	"aserowy/tmux.nvim",
-	-- 	config = function()
-	-- 		require("config.tmux")
-	-- 	end,
-	-- },
 	{
 		"aznhe21/actions-preview.nvim",
 		config = function()
@@ -318,5 +269,14 @@ return {
 	},
 	{
 		require("config.dropbar")
+	},
+	{
+		require("config.blink")
+	},
+	{
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("config.gitsigns")
+		end,
 	},
 }
