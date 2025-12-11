@@ -13,8 +13,11 @@ autocmd("VimLeave", {
 	command = "set guicursor=a:ver25-Cursor"
 })
 
-autocmd({ "CursorHold" }, {
-	callback = function()
-		vim.diagnostic.open_float(nil, { focus = false })
-	end
+autocmd("BufWritePre", {
+  callback = function()
+    local ok = pcall(function()
+      vim.cmd "undojoin"
+    end)
+    vim.cmd "Neoformat"
+  end,
 })

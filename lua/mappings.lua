@@ -3,6 +3,8 @@ local map = vim.keymap.set
 map("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>")
 map("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>")
 
+map({"n", "v"}, "<leader>ap", require("actions-preview").code_actions)
+
 map("n", ";", ":", { desc = "CMD enter command mode" })
 
 -- Move selected text up

@@ -280,4 +280,22 @@ return {
 			require("config.tmux")
 		end,
 	},
+	{
+		"rachartier/tiny-inline-diagnostic.nvim",
+		config = function ()
+			require("config.TID")
+		end,
+	},
+	{
+		"aznhe21/actions-preview.nvim",
+		config = function()
+			require("config.actions-preview")
+		end,
+	},
+	{
+		"sbdchd/neoformat",
+		-- config = function()
+		-- 	require("config.neoformat")
+		-- end,
+	},
 }
