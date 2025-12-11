@@ -39,5 +39,3 @@ vim.filetype.add {
 		[".*/uwsm/env.*"] = "zsh",
 	},
 }
-
-vim.cmd "colorscheme monokai-pro-octagon"
