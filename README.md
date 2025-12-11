@@ -20,18 +20,18 @@ Personal Neovim configuration using [lazy.nvim](https://github.com/folke/lazy.nv
 
 ## Key Mappings
 
-| Key | Action |
-|-----|--------|
-| `<leader>e` | File explorer |
-| `<leader>f` | Find files |
-| `<leader>g` | Live grep |
-| `<Tab>` / `<S-Tab>` | Cycle buffers |
-| `<Alt-Arrow>` | Navigate splits (Kitty) |
-| `<Alt-c>` | Toggle Copilot Chat |
-| `<C-q>` | Toggle terminal |
-| `<leader>u` | Undotree |
-| `<leader>ap` | Code actions preview |
-| `<leader>sp` | Colorscheme picker |
+| Key                 | Action                  |
+| ------------------- | ----------------------- |
+| `<leader>e`         | File explorer           |
+| `<leader>f`         | Find files              |
+| `<leader>g`         | Live grep               |
+| `<Tab>` / `<S-Tab>` | Cycle buffers           |
+| `<Alt-Arrow>`       | Navigate splits (Kitty) |
+| `<Alt-c>`           | Toggle Copilot Chat     |
+| `<C-q>`             | Toggle terminal         |
+| `<leader>u`         | Undotree                |
+| `<leader>ap`        | Code actions preview    |
+| `<leader>sp`        | Colorscheme picker      |
 
 ## Requirements
 
@@ -43,7 +43,7 @@ Personal Neovim configuration using [lazy.nvim](https://github.com/folke/lazy.nv
 ## Installation
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/nvim ~/.config/nvim
+git clone https://github.com/Zacharias-Brohn/nvimdots ~/.config/nvim
 nvim
 ```
 
