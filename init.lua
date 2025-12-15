@@ -39,3 +39,5 @@ vim.filetype.add {
 		[".*/uwsm/env.*"] = "zsh",
 	},
 }
+
+vim.cmd "colorscheme tokyonight"

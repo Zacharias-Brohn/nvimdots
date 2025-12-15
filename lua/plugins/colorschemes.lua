@@ -56,4 +56,10 @@ return {
 			vim.g.minimal_italic_keywords = true
 		end,
 	},
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
 }

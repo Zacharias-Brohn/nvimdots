@@ -296,4 +296,10 @@ return {
 			require "config.scrollbar"
 		end,
 	},
+	{
+		"Zacharias-Brohn/zterm-navigator.nvim",
+		config = function()
+			require "config.zterm-navigator"
+		end,
+	},
 }
