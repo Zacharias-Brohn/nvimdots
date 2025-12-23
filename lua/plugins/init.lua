@@ -1,8 +1,5 @@
 return {
 	{
-		require "plugins.colorschemes",
-	},
-	{
 		"nvim-mini/mini.nvim",
 		version = false,
 
@@ -12,6 +9,8 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
+		lazy = false,
+		build = ":TSUpdate",
 		config = function()
 			require "config.treesitter"
 		end,
