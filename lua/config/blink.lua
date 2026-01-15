@@ -23,37 +23,101 @@ M.components = {
 		highlight = function(ctx)
 			return ctx.kind
 		end,
-	}
+	},
 }
 
 local opts = {
-	'saghen/blink.cmp',
-	dependencies = { 'rafamadriz/friendly-snippets' },
+	"saghen/blink.cmp",
+	dependencies = {
+		"rafamadriz/friendly-snippets",
+		{
+			"fang2hou/blink-copilot",
+			config = function()
+				require "config.blink-copilot"
+			end,
+		},
+	},
 
-
-	version = '1.*',
+	version = "1.*",
 
 	opts = {
 		keymap = {
-			preset = 'enter',
-			["<Tab>"] = { "select_next", "fallback" },
-			["<S-Tab>"] = { "select_prev", "fallback" },
+			["<Tab>"] = {
+				function(cmp)
+					if cmp.is_visible() then
+						return cmp.select_next()
+					end
+
+					if cmp.snippet_active() then
+						return cmp.snippet_forward()
+					end
+
+					return cmp.fallback()
+				end,
+			},
+			["<S-Tab>"] = {
+				function(cmp)
+					if cmp.is_visible() then
+						return cmp.select_prev()
+					end
+
+					if cmp.snippet_active() then
+						return cmp.snippet_backward()
+					end
+
+					return cmp.fallback()
+				end,
+			},
+			["<CR>"] = { "accept", "fallback" },
+			["Up"] = {},
+			["Down"] = {},
 		},
 
 		appearance = {
-			nerd_font_variant = 'mono'
+			nerd_font_variant = "mono",
+		},
+
+		cmdline = {
+			completion = {
+				menu = { auto_show = true },
+				list = { selection = { preselect = false } },
+			},
+
+			keymap = {
+				["<Tab>"] = {
+					function(cmp)
+						if cmp.is_visible() then
+							return cmp.select_next()
+						end
+
+						return cmp.fallback()
+					end,
+				},
+				["<S-Tab>"] = {
+					function(cmp)
+						if cmp.is_visible() then
+							return cmp.select_prev()
+						end
+
+						return cmp.fallback()
+					end,
+				},
+				["<CR>"] = { "accept", "fallback" },
+				["Up"] = {},
+				["Down"] = {},
+			},
 		},
 
 		completion = {
 			documentation = { auto_show = true, auto_show_delay_ms = 50 },
 			keyword = { range = "full" },
-			accept = { auto_brackets = { enabled = false }},
+			accept = { auto_brackets = { enabled = true } },
 			ghost_text = { enabled = true },
 			list = {
 				selection = {
-					preselect = true,
+					-- preselect = false,
 					auto_insert = false,
-				}
+				},
 			},
 
 			menu = {
@@ -61,23 +125,57 @@ local opts = {
 				border = "single",
 				draw = {
 					padding = 1,
-					columns = {{ "kind_icon" }, { "label" }, { "kind" }},
+					columns = {
+						{ "kind_icon" },
+						{ "label", "label_description", gap = 1 },
+						{ "kind" },
+					},
 					components = M.components,
-				}
-			}
+				},
+			},
 		},
 
+		signature = { enabled = true },
+
 		sources = {
-			default = { 'lsp', 'path', 'snippets', 'buffer' },
+			default = { "lsp", "path", "snippets", "buffer", "copilot" },
+			providers = {
+				lsp = {
+					score_offset = 50,
+				},
+
+				path = {
+					opts = {
+						get_cwd = function()
+							return vim.fn.getcwd()
+						end,
+					},
+				},
+
+				buffer = {
+					score_offset = -10,
+				},
+
+				snippets = {
+					score_offset = 0,
+				},
+
+				copilot = {
+					name = "copilot",
+					module = "blink-copilot",
+					score_offset = 100,
+					async = true,
+				},
+			},
 		},
 
 		snippets = {
-			preset = 'default',
+			preset = "default",
 		},
 
-		fuzzy = { implementation = "prefer_rust_with_warning" }
+		fuzzy = { implementation = "prefer_rust_with_warning" },
 	},
-	opts_extend = { "sources.default" }
+	opts_extend = { "sources.default" },
 }
 
 return opts

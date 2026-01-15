@@ -1,21 +1,21 @@
-require("copilot").setup({
+require("copilot").setup {
 	panel = {
-		enabled = true,
+		enabled = false,
 		auto_refresh = true,
 		keymap = {
 			jump_prev = "[[",
 			jump_next = "]]",
 			accept = "<CR>",
 			refresh = "gr",
-			open = "<M-CR>"
+			open = "<M-CR>",
 		},
 		layout = {
 			position = "bottom", -- | top | left | right | horizontal | vertical
-			ratio = 0.4
+			ratio = 0.4,
 		},
 	},
 	suggestion = {
-		enabled = true,
+		enabled = false,
 		auto_trigger = true,
 		hide_during_completion = true,
 		debounce = 75,
@@ -30,8 +30,8 @@ require("copilot").setup({
 	},
 	filetypes = {
 		-- yaml = false,
-		-- markdown = false,
-		-- help = false,
+		markdown = true,
+		help = true,
 		-- gitcommit = false,
 		-- gitrebase = false,
 		-- hgcommit = false,
@@ -49,11 +49,11 @@ require("copilot").setup({
 		-- hypr = false,
 		-- ["."] = false,
 	},
-	copilot_node_command = 'node',
+	copilot_node_command = "node",
 	server_opts_overrides = {},
 	vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
 		callback = function()
-			vim.cmd( "CopilotChatSave AutoSave" )
+			vim.cmd "CopilotChatSave AutoSave"
 		end,
 	}),
-})
+}

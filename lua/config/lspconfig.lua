@@ -15,7 +15,8 @@ end
 local capabilities = vim.tbl_deep_extend(
 	"force",
 	{},
-	vim.lsp.protocol.make_client_capabilities()
+	vim.lsp.protocol.make_client_capabilities(),
+	require("blink.cmp").get_lsp_capabilities()
 )
 
 require("fidget").setup {}
@@ -213,6 +214,7 @@ for _, server in ipairs(flat_servers) do
 				bufnr
 			)
 		end,
+		capabilities = capabilities,
 	})
 	lspenable(server)
 end

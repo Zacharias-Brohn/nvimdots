@@ -132,6 +132,7 @@ return {
 			-- "saadparwaiz1/cmp_luasnip",
 			"j-hui/fidget.nvim",
 			"b0o/schemastore.nvim",
+			"saghen/blink.cmp",
 		},
 		config = function()
 			require "config.lspconfig"

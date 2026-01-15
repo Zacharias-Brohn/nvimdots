@@ -3,4 +3,8 @@ require("zterm-navigator").setup {
 	right = "<A-Right>",
 	up = "<A-Up>",
 	down = "<A-Down>",
+
+	statusline = {
+		enabled = false,
+	},
 }
