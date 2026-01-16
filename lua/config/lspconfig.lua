@@ -197,6 +197,7 @@ local servers = {
 	"sourcekit",
 	"qmlls",
 	"tailwindcss",
+	"systemd-lsp",
 	require("mason-lspconfig").get_installed_servers(),
 }
 

@@ -51,9 +51,8 @@ local opts = {
 					if cmp.snippet_active() then
 						return cmp.snippet_forward()
 					end
-
-					return cmp.fallback()
 				end,
+				"fallback",
 			},
 			["<S-Tab>"] = {
 				function(cmp)
@@ -64,9 +63,8 @@ local opts = {
 					if cmp.snippet_active() then
 						return cmp.snippet_backward()
 					end
-
-					return cmp.fallback()
 				end,
+				"fallback",
 			},
 			["<CR>"] = { "accept", "fallback" },
 			["Up"] = {},
@@ -89,18 +87,16 @@ local opts = {
 						if cmp.is_visible() then
 							return cmp.select_next()
 						end
-
-						return cmp.fallback()
 					end,
+					"fallback",
 				},
 				["<S-Tab>"] = {
 					function(cmp)
 						if cmp.is_visible() then
 							return cmp.select_prev()
 						end
-
-						return cmp.fallback()
 					end,
+					"fallback",
 				},
 				["<CR>"] = { "accept", "fallback" },
 				["Up"] = {},
