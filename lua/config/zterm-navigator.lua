@@ -5,7 +5,7 @@ require("zterm-navigator").setup({
 	up = "<A-Up>",
 	down = "<A-Down>",
 
-	-- statusline {
-	-- 	enabled = false
-	-- },
+	statusline = {
+		enabled = false
+	},
 })
