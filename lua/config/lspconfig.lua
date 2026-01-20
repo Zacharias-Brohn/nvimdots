@@ -12,6 +12,7 @@ local function flatten_to_array(t)
 	_flatten(t)
 	return res
 end
+
 local capabilities = vim.tbl_deep_extend(
 	"force",
 	{},
