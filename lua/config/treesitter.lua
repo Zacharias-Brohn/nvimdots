@@ -1,6 +1,6 @@
 local treesitter = require "nvim-treesitter"
 
-treesitter.setup {}
+treesitter.install { "all" }
 
 vim.api.nvim_create_autocmd("FileType", {
 	callback = function(args)
@@ -11,8 +11,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		end
 
 		vim.treesitter.start()
-		if vim.treesitter.get_parser(args.buf):lang() ~= "python" then
-			vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-		end
+		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 	end,
 })
