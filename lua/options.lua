@@ -5,6 +5,7 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = false
 vim.opt.smartindent = false
+--vim.opt.rocks.enabled = false
 
 vim.o.list = true
 vim.opt.listchars = { tab = "··", trail = "·", nbsp = "_" }
@@ -13,7 +14,7 @@ vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.nvim/undodir"
+vim.opt.undodir = vim.fn.stdpath('data') .. '/undodir'
 vim.opt.undofile = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true

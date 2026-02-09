@@ -33,22 +33,6 @@ return {
 		end,
 	},
 	{
-		"olimorris/onedarkpro.nvim",
-		priority = 1000,
-		config = function()
-			require("config.themelight")
-		end,
-	},
-	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		config = function()
-			require("config.telescope")
-		end,
-	},
-	{
 		"lambdalisue/vim-suda",
 		init = function()
 			vim.g.suda_smart_edit = 1
@@ -148,14 +132,14 @@ return {
 	{
 		"notken12/base46-colors",
 	},
-	-- {
-	--     "mason-org/mason-lspconfig.nvim",
-	--     opts = {},
+	{
+	    "mason-org/mason-lspconfig.nvim",
+	    -- opts = {},
 	--     dependencies = {
 	--         { "mason-org/mason.nvim", opts = {} },
 	--         "neovim/nvim-lspconfig",
 	--     },
-	-- },
+	},
 	{
 		"folke/lazydev.nvim",
 		ft = "lua",
@@ -196,16 +180,6 @@ return {
 	},
 	{
 		"mfussenegger/nvim-jdtls",
-	},
-	{
-		"ThePrimeagen/harpoon",
-		branch = "harpoon2",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		config = function()
-			require("config.harpoon")
-		end,
 	},
 	{
 		"catgoose/nvim-colorizer.lua",
@@ -256,28 +230,6 @@ return {
 		end,
 	},
 	{
-		"propet/colorscheme-persist.nvim",
-		dependencies = {
-			"nvim-telescope/telescope.nvim",
-		},
-		lazy = false,
-		config = true,
-		keys = {
-			{
-				"<leader>sp",
-				function()
-					require("colorscheme-persist").picker()
-				end,
-				mode = "n",
-			},
-		},
-		opts = {
-			picker_opts = require("telescope.themes").get_dropdown({
-				enable_preview = true,
-			}),
-		}
-	},
-	{
 		"aserowy/tmux.nvim",
 		config = function()
 			require("config.tmux")
@@ -290,6 +242,16 @@ return {
 		end,
 	},
 	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		config = function()
+			require("config.harpoon")
+		end,
+	},
+	{
 		"aznhe21/actions-preview.nvim",
 		config = function()
 			require("config.actions-preview")
@@ -297,9 +259,9 @@ return {
 	},
 	{
 		"sbdchd/neoformat",
-		-- config = function()
-		-- 	require("config.neoformat")
-		-- end,
+		config = function()
+			require("config.neoformat")
+		end,
 	},
 	{
 	  "Zacharias-Brohn/zterm-navigator.nvim",

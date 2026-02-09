@@ -16,7 +16,6 @@ require("globals")
 require("mappings")
 require("autocmd")
 require("minimodules").load_modules()
--- require("coc-settings")
 
 if vim.g.neovide then
 	require("config.neovide")
