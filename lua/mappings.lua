@@ -63,3 +63,13 @@ map("n", "<C-q>", function() Snacks.terminal.toggle() end, { desc = "Toggle Term
 
 -- Gitbrowse
 map("n", "<leader>gb", function() Snacks.gitbrowse.open() end )
+
+-- Notif history
+map("n", "<leader>n", function()
+	Snacks.notifier.show_history()
+end)
+
+-- Actions Previewer
+map({ "n", "v" }, "<leader>ap", require("actions-preview").code_actions)
+
+map("n", "K", require("pretty_hover").hover)

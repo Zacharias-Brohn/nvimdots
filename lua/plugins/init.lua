@@ -102,7 +102,6 @@ return {
 	},
 	{
 		"zbirenbaum/copilot.lua",
-		lazy = true,
 		cmd = "Copilot",
 		event = "InsertEnter",
 		config = function()
@@ -161,6 +160,8 @@ return {
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
 			"j-hui/fidget.nvim",
+			"b0o/schemastore.nvim",
+			"saghen/blink.cmp",
 		},
 		config = function()
 			require("config.lspconfig")
@@ -268,5 +269,13 @@ return {
 	  config = function()
 	    require("config.zterm-navigator")
 	  end,
+	},
+	{
+		"Fildo7525/pretty_hover",
+		event = "LspAttach",
+		opts = {},
+	},
+	{
+		"artemave/workspace-diagnostics.nvim",
 	},
 }

@@ -11,6 +11,8 @@ $packages = @(
 	"Ninja-build.Ninja"
 )
 
+# cargo install --locked tree-sitter-cli
+
 foreach ( $package in $packages ) {
 	Write-Host "Installing $package..." -foregroundcolor yellow
 	# winget install $package
@@ -18,7 +20,7 @@ foreach ( $package in $packages ) {
 
 $list = @(
     "Git.Git",
-    "ajeetdsouza.zoxide",
+    "ajeetdsouza.zoxide"
 )
 
 Write-Host "Module list" -ForegroundColor Magenta
