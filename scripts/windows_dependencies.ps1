@@ -8,7 +8,8 @@ $packages = @(
 	"Rustlang.Rust.MSVC",
 	"GoLang.Go",
 	"Kitware.Cmake",
-	"Ninja-build.Ninja"
+	"Ninja-build.Ninja",
+	"LuaLS.lua-language-server"
 )
 
 # cargo install --locked tree-sitter-cli

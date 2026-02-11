@@ -164,7 +164,9 @@ lspconfig("texlab", {
 })
 
 lspconfig("qmlls", {
-	cmd = { "qmlls6" },
+	cmd = { "qmlls6", "qmlls" },
+	filetypes = { "qml", "qmljs" },
+	root_markers = { ".git" },
 })
 
 lspconfig("jsonls", {
