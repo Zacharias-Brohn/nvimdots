@@ -1,5 +1,8 @@
 return {
 	{
+		require("config.snacks")
+	},
+	{
 		"nvim-mini/mini.nvim",
 		version = false,
 
@@ -49,23 +52,6 @@ return {
 		end,
 	},
 	{
-		"nvim-lualine/lualine.nvim",
-		event = "VeryLazy",
-		config = function ()
-			if vim.env.TMUX then
-				vim.api.nvim_create_autocmd({ "FocusGained", "ColorScheme", "VimEnter" }, {
-					callback = function()
-						vim.defer_fn( function()
-							vim.opt.laststatus = 0
-						end, 100)
-					end,
-				})
-				vim.o.laststatus = 0
-			end
-			require("config.lualine")
-		end,
-	},
-	{
 		"mawkler/modicator.nvim",
 		config = function()
 			require("config.modicator")
@@ -105,7 +91,7 @@ return {
 		cmd = "Copilot",
 		event = "InsertEnter",
 		config = function()
-			require "config.copilot"
+			require "config.ai.copilot"
 		end,
 	},
 	{
@@ -116,7 +102,7 @@ return {
 		},
 		build = "make tiktoken",
 		config = function()
-			require "config.copilotchat"
+			require "config.ai.copilotchat"
 		end,
 	},
 	{
@@ -126,18 +112,12 @@ return {
 		end,
 	},
 	{
-		require("config.snacks")
-	},
-	{
-		"notken12/base46-colors",
-	},
-	{
 	    "mason-org/mason-lspconfig.nvim",
-	    -- opts = {},
-	--     dependencies = {
-	--         { "mason-org/mason.nvim", opts = {} },
-	--         "neovim/nvim-lspconfig",
-	--     },
+	    opts = {},
+	    dependencies = {
+	        { "mason-org/mason.nvim", opts = {} },
+	        "neovim/nvim-lspconfig",
+	    },
 	},
 	{
 		"folke/lazydev.nvim",
@@ -164,7 +144,7 @@ return {
 			"saghen/blink.cmp",
 		},
 		config = function()
-			require("config.lspconfig")
+			require("config.format.lspconfig")
 		end,
 	},
 	{
@@ -183,12 +163,6 @@ return {
 		"mfussenegger/nvim-jdtls",
 	},
 	{
-		"catgoose/nvim-colorizer.lua",
-		config = function()
-			require("config.colorizer")
-		end,
-	},
-	{
 		"ziglang/zig.vim",
 	},
 	{
@@ -201,7 +175,7 @@ return {
 	{
 		"f3fora/nvim-texlabconfig",
 		config = function()
-			require("config.texlab")
+			require("config.format.texlab")
 		end,
 		build = "go build",
 	},
@@ -220,7 +194,7 @@ return {
 	{
 		"ThePrimeagen/refactoring.nvim",
 		config = function()
-			require("config.refactoring")
+			require("config.format.refactoring")
 		end,
 	},
 	{
@@ -233,13 +207,13 @@ return {
 	{
 		"aserowy/tmux.nvim",
 		config = function()
-			require("config.tmux")
+			require("config.terminal.tmux")
 		end,
 	},
 	{
 		"rachartier/tiny-inline-diagnostic.nvim",
 		config = function ()
-			require("config.TID")
+			require("config.format.TID")
 		end,
 	},
 	{
@@ -261,13 +235,13 @@ return {
 	{
 		"sbdchd/neoformat",
 		config = function()
-			require("config.neoformat")
+			require("config.format.neoformat")
 		end,
 	},
 	{
 	  "Zacharias-Brohn/zterm-navigator.nvim",
 	  config = function()
-	    require("config.zterm-navigator")
+	    require("config.terminal.zterm-navigator")
 	  end,
 	},
 	{

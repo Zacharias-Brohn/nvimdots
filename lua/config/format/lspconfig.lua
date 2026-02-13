@@ -26,6 +26,7 @@ require("mason-lspconfig").setup {
 	automatic_enable = true,
 	ensure_installed = {
 		"lua_ls",
+        "qmlls",
 		"rust_analyzer",
 		"gopls",
 	},

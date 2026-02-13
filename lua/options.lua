@@ -3,9 +3,8 @@ vim.opt.relativenumber = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.expandtab = false
+vim.opt.expandtab = true
 vim.opt.smartindent = false
---vim.opt.rocks.enabled = false
 
 vim.o.list = true
 vim.opt.listchars = { tab = "··", trail = "·", nbsp = "_" }
@@ -55,5 +54,4 @@ vim.env.PATH = table.concat({ vim.fn.stdpath "data", "mason", "bin" }, sep) .. d
 
 vim.api.nvim_set_hl( 0, "Cursor", { reverse = true })
 
--- vim-tpipeline
 vim.g.tpipeline_restore = 1
