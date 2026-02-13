@@ -30,8 +30,7 @@ return {
         enabled = false,
 		priority = 1000,
 		config = function()
-			require("config.theme.onedarkpro-light
-            ")
+			require("config.theme.onedarkpro-light")
 		end,
 	},
 }

@@ -10,7 +10,12 @@ $packages = @(
 	"GoLang.Go",
 	"Kitware.Cmake",
 	"Ninja-build.Ninja",
-	"LuaLS.lua-language-server"
+	"LuaLS.lua-language-server",
+    "GitHub.cli",
+    "GNU.Wget2",
+    "GnuWin32.UnZip",
+    "GnuWin32.Gzip",
+    "7zip.7zip"
 )
 
 for ($i = 0; $i -lt $packages.Count; $i++) {
