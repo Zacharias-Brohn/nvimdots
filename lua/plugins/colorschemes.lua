@@ -18,9 +18,10 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		-- config = function()
-		-- 	require("config.catppuccin")
-		-- end,
+		priority = 1000,
+		config = function()
+			require "config.catppuccin"
+		end,
 	},
 	{
 		"rebelot/kanagawa.nvim",

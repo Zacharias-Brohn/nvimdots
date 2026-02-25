@@ -40,4 +40,4 @@ vim.filetype.add {
 	},
 }
 
-vim.cmd "colorscheme tokyonight"
+require "config.load-colorscheme"

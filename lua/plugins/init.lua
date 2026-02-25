@@ -81,12 +81,6 @@ return {
 		"tpope/vim-fugitive",
 	},
 	{
-		"rcarriga/nvim-notify",
-		config = function()
-			require "config.notify"
-		end,
-	},
-	{
 		"zbirenbaum/copilot.lua",
 		lazy = true,
 		cmd = "Copilot",
@@ -128,11 +122,15 @@ return {
 		dependencies = {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"hrsh7th/nvim-cmp",
 			"L3MON4D3/LuaSnip",
-			-- "saadparwaiz1/cmp_luasnip",
+			"saadparwaiz1/cmp_luasnip",
 			"j-hui/fidget.nvim",
 			"b0o/schemastore.nvim",
-			"saghen/blink.cmp",
 		},
 		config = function()
 			require "config.lspconfig"
@@ -211,28 +209,28 @@ return {
 			vim.g.minimal_italic_functions = true
 		end,
 	},
-	{
-		"propet/colorscheme-persist.nvim",
-		dependencies = {
-			"nvim-telescope/telescope.nvim",
-		},
-		lazy = false,
-		config = true,
-		keys = {
-			{
-				"<leader>sp",
-				function()
-					require("colorscheme-persist").picker()
-				end,
-				mode = "n",
-			},
-		},
-		opts = {
-			picker_opts = require("telescope.themes").get_dropdown {
-				enable_preview = true,
-			},
-		},
-	},
+	-- {
+	-- 	"propet/colorscheme-persist.nvim",
+	-- 	dependencies = {
+	-- 		"nvim-telescope/telescope.nvim",
+	-- 	},
+	-- 	lazy = false,
+	-- 	config = true,
+	-- 	keys = {
+	-- 		{
+	-- 			"<leader>sp",
+	-- 			function()
+	-- 				require("colorscheme-persist").picker()
+	-- 			end,
+	-- 			mode = "n",
+	-- 		},
+	-- 	},
+	-- 	opts = {
+	-- 		picker_opts = require("telescope.themes").get_dropdown {
+	-- 			enable_preview = true,
+	-- 		},
+	-- 	},
+	-- },
 	{
 		"aznhe21/actions-preview.nvim",
 		config = function()
@@ -254,9 +252,9 @@ return {
 	{
 		"MunifTanjim/nui.nvim",
 	},
-	{
-		"artemave/workspace-diagnostics.nvim",
-	},
+	-- {
+	-- 	"artemave/workspace-diagnostics.nvim",
+	-- },
 	{
 		require "config.dev-tools",
 	},
@@ -271,9 +269,6 @@ return {
 	},
 	{
 		require "config.dropbar",
-	},
-	{
-		require "config.blink",
 	},
 	{
 		"lewis6991/gitsigns.nvim",
@@ -299,8 +294,43 @@ return {
 	},
 	{
 		"Zacharias-Brohn/zterm-navigator.nvim",
+		enabled = false,
 		config = function()
 			require "config.zterm-navigator"
+		end,
+	},
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-mini/mini.nvim",
+		},
+		---@module 'render-markdown'
+		---@type render.md.UserConfig
+		opts = require "config.render-markdown",
+	},
+	{
+		"mrjones2014/smart-splits.nvim",
+		config = function()
+			require "config.smart-splits"
+		end,
+	},
+	{
+		"kkrampis/codex.nvim",
+		lazy = true,
+		cmd = { "Codex", "CodexToggle" },
+		keys = {
+			-- {
+			-- 	nil,
+			-- 	function()
+			-- 		require("codex").toggle()
+			-- 	end,
+			-- 	desc = "Toggle Codex",
+			-- 	mode = { "n", "t" },
+			-- },
+		},
+		opts = function()
+			require "config.codex"
 		end,
 	},
 }

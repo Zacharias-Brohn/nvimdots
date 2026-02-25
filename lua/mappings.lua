@@ -14,6 +14,16 @@ map("n", "<A-c>", vim.cmd.CopilotChatToggle)
 map("i", "<A-c>", vim.cmd.CopilotChatToggle)
 map("v", "<A-c>", vim.cmd.CopilotChatToggle)
 
+-- Splits
+vim.keymap.set("n", "<A-S-Left>", require("smart-splits").resize_left)
+vim.keymap.set("n", "<A-S-Down>", require("smart-splits").resize_down)
+vim.keymap.set("n", "<A-S-Up>", require("smart-splits").resize_up)
+vim.keymap.set("n", "<A-S-Right>", require("smart-splits").resize_right)
+vim.keymap.set("n", "<A-Left>", require("smart-splits").move_cursor_left)
+vim.keymap.set("n", "<A-Down>", require("smart-splits").move_cursor_down)
+vim.keymap.set("n", "<A-Up>", require("smart-splits").move_cursor_up)
+vim.keymap.set("n", "<A-Right>", require("smart-splits").move_cursor_right)
+
 -- Explorer and Undotree
 map("n", "<leader>e", function()
 	Snacks.explorer()
@@ -37,6 +47,14 @@ map(
 	"<leader>f",
 	require("telescope.builtin").find_files,
 	{ desc = "Telescope find files" }
+)
+
+-- LSP
+map(
+	"n",
+	"gd",
+	vim.lsp.buf.definition,
+	{ noremap = true, silent = true, buffer = bufnr }
 )
 
 map("n", "<A-->", ":bdelete<CR>")

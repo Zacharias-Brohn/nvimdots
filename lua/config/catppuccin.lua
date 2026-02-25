@@ -1,9 +1,9 @@
 ---@diagnostic disable: redundant-parameter
-require("catppuccin").setup({
-	flavour = "auto",
+require("catppuccin").setup {
+	flavour = "latte",
 	background = {
 		light = "latte",
-		dark = "mocha",
+		dark = "latte",
 	},
 	transparent_background = false,
 	float = {
@@ -68,4 +68,4 @@ require("catppuccin").setup({
 			indentscope_color = "",
 		},
 	},
-})
+}

@@ -1,3 +1,7 @@
+local cmp = require "cmp"
+local cmp_lsp = require "cmp_nvim_lsp"
+local cmp_kinds = require("assets.icons").icons.kinds
+
 local function flatten_to_array(t)
 	local res = {}
 	local function _flatten(tbl)
@@ -17,7 +21,7 @@ local capabilities = vim.tbl_deep_extend(
 	"force",
 	{},
 	vim.lsp.protocol.make_client_capabilities(),
-	require("blink.cmp").get_lsp_capabilities()
+	cmp_lsp.default_capabilities()
 )
 
 require("fidget").setup {}
@@ -94,6 +98,74 @@ require("mason-lspconfig").setup {
 	},
 }
 
+cmp.setup {
+	preselect = "None",
+	formatting = {
+		fields = { "kind", "abbr" },
+		format = function(entry, vim_item)
+			vim_item.kind = cmp_kinds[vim_item.kind] or ""
+			if entry.completion_item.detail then
+				vim_item.menu = entry.completion_item.detail
+			end
+			return vim_item
+		end,
+	},
+	completion = { completeopt = "menu,menuone" },
+	snippet = {
+		expand = function(args)
+			require("luasnip").lsp_expand(args.body)
+		end,
+	},
+
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	},
+
+	view = {
+		entries = "custom",
+	},
+
+	mapping = {
+		["<C-p>"] = cmp.mapping.select_prev_item(),
+		["<C-n>"] = cmp.mapping.select_next_item(),
+		["<C-d>"] = cmp.mapping.scroll_docs(-4),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-e>"] = cmp.mapping.close(),
+		["<CR>"] = cmp.mapping.confirm {
+			behavior = cmp.ConfirmBehavior.Insert,
+			select = true,
+		},
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif require("luasnip").expand_or_jumpable() then
+				require("luasnip").expand_or_jump()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif require("luasnip").jumpable(-1) then
+				require("luasnip").jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+	},
+
+	sources = cmp.config.sources {
+		{ name = "path" },
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
+		{ name = "buffer" },
+		{ name = "nvim_lua" },
+	},
+}
+
 vim.diagnostic.config {
 	virtual_text = false,
 	virtual_lines = false,
@@ -165,6 +237,12 @@ lspconfig("texlab", {
 
 lspconfig("qmlls", {
 	cmd = { "qmlls6" },
+	filetypes = { "qml" },
+	single_file_support = true,
+	root_dir = function(bufnr, on_dir)
+		local root = vim.fs.root(bufnr, ".git")
+		on_dir(root)
+	end,
 })
 
 lspconfig("jsonls", {
@@ -210,11 +288,6 @@ for _, server in ipairs(flat_servers) do
 			if client.name == "typos_lsp" then
 				return
 			end
-
-			require("workspace-diagnostics").populate_workspace_diagnostics(
-				client,
-				bufnr
-			)
 		end,
 		capabilities = capabilities,
 	})
