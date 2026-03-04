@@ -55,7 +55,7 @@ return {
 		"mawkler/modicator.nvim",
 		config = function()
 			require("config.modicator")
-		end
+		end,
 	},
 	{
 		"shinchu/lightline-gruvbox.vim",
@@ -86,7 +86,7 @@ return {
 			require "config.notify"
 		end,
 	},
-	{
+    {
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
 		event = "InsertEnter",
@@ -94,6 +94,12 @@ return {
 			require "config.ai.copilot"
 		end,
 	},
+    {
+      "zbirenbaum/copilot-cmp",
+      config = function ()
+        require "config.ai.copilot_cmp"
+      end,
+    },
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
 		dependencies = {

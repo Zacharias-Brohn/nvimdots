@@ -36,7 +36,7 @@ end)
 
 -- Greatest remap
 map("n", "<leader>Y", [["+Y]])
-map("n", "<C-q>", function() Snacks.terminal.toggle() end, { desc = "Toggle Terminal" })
+map("n", "<A-q>", function() Snacks.terminal.toggle() end, { desc = "Toggle Terminal" })
 map("n", "<leader>gb", function() Snacks.gitbrowse.open() end )
 map("n", "K", require("pretty_hover").hover)
 

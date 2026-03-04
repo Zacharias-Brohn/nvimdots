@@ -3,7 +3,7 @@ local M = {}
 M.plugin = {
   "sbdchd/neoformat",
   config = function()
-    vim.g.neoformat_enabled_lua = { "stylua" }
+    vim.g.neoformat_enabled_lua = { "luaformatter" }
     vim.g.neoformat_enabled_python = { "black" }
     vim.g.neoformat_enabled_javascript = { "prettier" }
     vim.g.neoformat_enabled_typescript = { "prettier" }
