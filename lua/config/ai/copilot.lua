@@ -1,4 +1,6 @@
+local is_windows = package.config:sub(1,1) == "\\"
 require("copilot").setup({
+
 	panel = {
 		enabled = true,
 		auto_refresh = true,
@@ -20,7 +22,7 @@ require("copilot").setup({
 		hide_during_completion = false,
 		debounce = 75,
 		keymap = {
-			accept = "<A-a>",
+            accept = is_windows and "<A-a>" or "<A-a>",
 			accept_word = false,
 			accept_line = false,
 			next = "<M-]>",
