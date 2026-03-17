@@ -22,7 +22,7 @@ end
 
 local function spell()
 	if vim.o.spell then
-		return string.format("[SPELL]")
+		return string.format "[SPELL]"
 	end
 
 	return ""
@@ -31,7 +31,8 @@ end
 --- show indicator for Chinese IME
 local function ime_state()
 	if vim.g.is_mac then
-		local layout = fn.libcall(vim.g.XkbSwitchLib, "Xkb_Switch_getXkbLayout", "")
+		local layout =
+			fn.libcall(vim.g.XkbSwitchLib, "Xkb_Switch_getXkbLayout", "")
 		local res = fn.match(layout, [[\v(Squirrel\.Rime|SCIM.ITABC)]])
 		if res ~= -1 then
 			return "[CN]"
@@ -58,8 +59,8 @@ local virtual_env = function()
 		return ""
 	end
 
-	local conda_env = os.getenv("CONDA_DEFAULT_ENV")
-	local venv_path = os.getenv("VIRTUAL_ENV")
+	local conda_env = os.getenv "CONDA_DEFAULT_ENV"
+	local venv_path = os.getenv "VIRTUAL_ENV"
 
 	if venv_path == nil then
 		if conda_env == nil then
@@ -85,10 +86,10 @@ require("lualine").setup {
 	laststatus = 0,
 	options = {
 		icons_enabled = true,
-		theme = "auto",
+		theme = "zshell",
 		globalstatus = true,
-		component_separators = '',
-		section_separators = { left = '', right = '' },
+		component_separators = "",
+		section_separators = { left = "", right = "" },
 		disabled_filetypes = {},
 		always_divide_middle = true,
 	},
@@ -158,7 +159,7 @@ require("lualine").setup {
 					error = icons.diagnostics.Error,
 					warn = icons.diagnostics.Warn,
 					info = icons.diagnostics.Info,
-					hint = icons.diagnostics.Hint
+					hint = icons.diagnostics.Hint,
 				},
 			},
 		},

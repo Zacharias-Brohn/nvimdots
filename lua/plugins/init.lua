@@ -68,7 +68,7 @@ return {
 	},
 	{
 		"hiphish/rainbow-delimiters.nvim",
-		enabled = true,
+		enabled = false,
 	},
 	{
 		"windwp/nvim-autopairs",

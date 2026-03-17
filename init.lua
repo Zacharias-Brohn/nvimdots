@@ -40,4 +40,4 @@ vim.filetype.add {
 	},
 }
 
-require "config.load-colorscheme"
+vim.cmd.colorscheme "zshell"
