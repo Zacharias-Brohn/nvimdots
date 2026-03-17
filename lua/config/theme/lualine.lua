@@ -1,5 +1,7 @@
 local fn = vim.fn
 
+local icons = require("assets.icons").icons
+
 local get_active_lsp = function()
 	local msg = ""
 	local buf_ft = vim.api.nvim_get_option_value("filetype", {})
@@ -20,7 +22,7 @@ end
 
 local function spell()
 	if vim.o.spell then
-		return string.format("[SPELL]")
+		return string.format "[SPELL]"
 	end
 
 	return ""
@@ -29,7 +31,8 @@ end
 --- show indicator for Chinese IME
 local function ime_state()
 	if vim.g.is_mac then
-		local layout = fn.libcall(vim.g.XkbSwitchLib, "Xkb_Switch_getXkbLayout", "")
+		local layout =
+			fn.libcall(vim.g.XkbSwitchLib, "Xkb_Switch_getXkbLayout", "")
 		local res = fn.match(layout, [[\v(Squirrel\.Rime|SCIM.ITABC)]])
 		if res ~= -1 then
 			return "[CN]"
@@ -40,18 +43,14 @@ local function ime_state()
 end
 
 local diff = function()
-	local git_status = vim.b.gitsigns_status_dict
-	if git_status == nil then
-		return
+	local gitsigns = vim.b.gitsigns_status_dict
+	if gitsigns then
+		return {
+			added = gitsigns.added,
+			modified = gitsigns.changed,
+			removed = gitsigns.removed,
+		}
 	end
-
-	local modify_num = git_status.changed
-	local remove_num = git_status.removed
-	local add_num = git_status.added
-
-	local info = { added = add_num, modified = modify_num, removed = remove_num }
-	-- vim.print(info)
-	return info
 end
 
 local virtual_env = function()
@@ -60,8 +59,8 @@ local virtual_env = function()
 		return ""
 	end
 
-	local conda_env = os.getenv("CONDA_DEFAULT_ENV")
-	local venv_path = os.getenv("VIRTUAL_ENV")
+	local conda_env = os.getenv "CONDA_DEFAULT_ENV"
+	local venv_path = os.getenv "VIRTUAL_ENV"
 
 	if venv_path == nil then
 		if conda_env == nil then
@@ -75,14 +74,22 @@ local virtual_env = function()
 	end
 end
 
+local lint_progress = function()
+	local linters = require("lint").get_running()
+	if #linters == 0 then
+		return ""
+	end
+	return table.concat(linters, ", ")
+end
+
 require("lualine").setup {
 	laststatus = 0,
 	options = {
 		icons_enabled = true,
-		theme = "auto",
+		theme = "zshell",
 		globalstatus = true,
-		component_separators = '',
-		section_separators = { left = '', right = '' },
+		component_separators = "",
+		section_separators = { left = "", right = "" },
 		disabled_filetypes = {},
 		always_divide_middle = true,
 	},
@@ -111,11 +118,16 @@ require("lualine").setup {
 			{
 				"filename",
 				symbols = {
-					readonly = "[󰌾]",
+					readonly = "[ 󰌾 ]",
 				},
 			},
 			{
 				"diff",
+				symbols = {
+					added = icons.git.added,
+					modified = icons.git.modified,
+					removed = icons.git.removed,
+				},
 				source = diff,
 			},
 			{
@@ -133,13 +145,22 @@ require("lualine").setup {
 				color = { fg = "black", bg = "#f46868" },
 			},
 			{
+				lint_progress,
+				icon = "󱉶 ",
+			},
+			{
 				get_active_lsp,
-				icon = " LSP:",
+				icon = " ",
 			},
 			{
 				"diagnostics",
 				sources = { "nvim_diagnostic" },
-				symbols = { error = " ", warn = " ", info = " ", hint = " " },
+				symbols = {
+					error = icons.diagnostics.Error,
+					warn = icons.diagnostics.Warn,
+					info = icons.diagnostics.Info,
+					hint = icons.diagnostics.Hint,
+				},
 			},
 		},
 		lualine_y = {
@@ -155,7 +176,9 @@ require("lualine").setup {
 			"filetype",
 		},
 		lualine_z = {
-			"progress",
+			{
+				"location",
+			},
 		},
 	},
 	inactive_sections = {
