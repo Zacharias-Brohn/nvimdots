@@ -161,12 +161,12 @@ return {
 			require "config.harpoon"
 		end,
 	},
-	-- {
-	-- 	"catgoose/nvim-colorizer.lua",
-	-- 	config = function()
-	-- 		require("config.colorizer")
-	-- 	end,
-	-- },
+	{
+		"catgoose/nvim-colorizer.lua",
+		config = function()
+			require "config.colorizer"
+		end,
+	},
 	{
 		"ziglang/zig.vim",
 	},
@@ -194,12 +194,6 @@ return {
 		"yazeed1s/minimal.nvim",
 		config = function()
 			vim.g.minimal_italic_comments = true
-		end,
-	},
-	{
-		"ThePrimeagen/refactoring.nvim",
-		config = function()
-			require "config.refactoring"
 		end,
 	},
 	{
@@ -255,9 +249,9 @@ return {
 	-- {
 	-- 	"artemave/workspace-diagnostics.nvim",
 	-- },
-	{
-		require "config.dev-tools",
-	},
+	-- {
+	-- 	require "config.dev-tools",
+	-- },
 	{
 		"Fildo7525/pretty_hover",
 		event = "LspAttach",
@@ -267,9 +261,9 @@ return {
 		"knubie/vim-kitty-navigator",
 		build = "cp ./*.py ~/.config/kitty/",
 	},
-	{
-		require "config.dropbar",
-	},
+	-- {
+	-- 	require "config.dropbar",
+	-- },
 	{
 		"lewis6991/gitsigns.nvim",
 		config = function()

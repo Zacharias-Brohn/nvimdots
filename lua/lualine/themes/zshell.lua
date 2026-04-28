@@ -6,19 +6,19 @@ local function pick(light, dark)
 end
 
 local c = {
-  bg = "#1A1206",
-  bg_alt = "#231A0D",
-  bg_mid = pick("#32291A", "#271E11"),
-  fg = "#F1E0CA",
-  fg_muted = "#DBC3A1",
+  bg = "#161219",
+  bg_alt = "#1E1A21",
+  bg_mid = pick("#2D2830", "#221E25"),
+  fg = "#E9E0EA",
+  fg_muted = "#CEC3D3",
   fg_strong = pick("#15161A", "#F4F4F8"),
 
-  normal = "#7D2C1E",
-  insert = "#733429",
-  visual = "#B5893E",
+  normal = "#894FBF",
+  insert = "#543D68",
+  visual = "#B2417A",
   replace = "#93000A",
-  command = pick("#FFDFD5", "#B9AB66"),
-  inactive = "#231A0D",
+  command = pick("#FFDCF2", "#A9A5D8"),
+  inactive = "#1E1A21",
 
   normal_fg = pick("#15161A", "#F4F4F8"),
   insert_fg = pick("#15161A", "#F4F4F8"),

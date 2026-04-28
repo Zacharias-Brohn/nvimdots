@@ -40,4 +40,4 @@ vim.filetype.add {
 	},
 }
 
-vim.cmd.colorscheme "zshell"
+vim.cmd.colorscheme "tokyodark"

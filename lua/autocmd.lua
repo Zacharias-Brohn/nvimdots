@@ -4,7 +4,7 @@ autocmd("LspAttach", {
 	callback = function(args)
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
 		if client then
-			vim.lsp.document_color.enable(false, args.buf, { "background" })
+			vim.lsp.document_color.enable(false, { bufnr = args.buf })
 		end
 	end,
 })

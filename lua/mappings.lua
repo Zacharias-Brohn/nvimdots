@@ -117,5 +117,5 @@ map({ "n", "v" }, "<leader>ap", require("actions-preview").code_actions)
 map("n", "K", require("pretty_hover").hover)
 
 -- winbar
-local dbar_api = require "dropbar.api"
-map("n", "<leader>b", dbar_api.pick)
+-- local dbar_api = require "dropbar.api"
+-- map("n", "<leader>b", dbar_api.pick)
